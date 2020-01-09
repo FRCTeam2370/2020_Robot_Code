@@ -7,6 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
@@ -15,6 +18,11 @@ public class Intake extends SubsystemBase {
    */
   public Intake() {
 
+  }
+  public static WPI_TalonSRX intakeMotor = new WPI_TalonSRX(2);
+
+  public static void intakemove(double speed){
+    intakeMotor.set(ControlMode.PercentOutput, speed);
   }
 
   @Override

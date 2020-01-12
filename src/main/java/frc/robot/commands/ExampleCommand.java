@@ -7,6 +7,8 @@
 
 package frc.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -17,7 +19,8 @@ import frc.robot.subsystems.ExampleSubsystem;
 public class ExampleCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ExampleSubsystem m_subsystem;
-
+  private double speed = .65;
+  private double targetV;
   /**
    * Creates a new ExampleCommand.
    *
@@ -37,13 +40,17 @@ public class ExampleCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ExampleSubsystem.driveTrain.arcadeDrive(RobotContainer.controller.getRawAxis(1), RobotContainer.controller.getRawAxis(0));
+    targetV =  RobotContainer.controller.getRawAxis(3) * 1000.0 * 4096 / 600;
+    ExampleSubsystem.shooterMotor.set(ControlMode.Velocity, -targetV);
+    ExampleSubsystem.shooterMotor2.set(ControlMode.Velocity, targetV);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-  }
+    ExampleSubsystem.shooterMotor.set(ControlMode.Velocity, 0);
+    ExampleSubsystem.shooterMotor2.set(ControlMode.Velocity, 0);
+    }
 
   // Returns true when the command should end.
   @Override

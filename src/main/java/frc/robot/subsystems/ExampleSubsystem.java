@@ -7,28 +7,53 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.commands.ExampleCommand;
 
 public class ExampleSubsystem extends SubsystemBase {
   /**
    * Creates a new ExampleSubsystem.
    */
-  public static WPI_TalonSRX leftMotor = new WPI_TalonSRX(0);
-  public static WPI_TalonSRX rightMotor = new WPI_TalonSRX(1);
-  public static DifferentialDrive driveTrain = new DifferentialDrive(leftMotor,rightMotor);
-
   public ExampleSubsystem() {
-  this.setDefaultCommand(new ExampleCommand(this));
+    configPID();
+  }
+  public static TalonFX shooterMotor = new TalonFX(1);
+  public static TalonFX shooterMotor2 = new TalonFX(2);
+  private static int timeout = 30;
+  private static int slotIdx = 0;
+  public static double kF = .0522;//.0522
+  public static double kP = 0.01;
+  public static double kI = 0.00000000001;
+  public static double kD = 0;
+
+  public static void configPID(){
+    //Configure Motor 1
+    shooterMotor.configFactoryDefault();
+    shooterMotor.setSensorPhase(true);
+    shooterMotor.configNominalOutputForward(0, timeout);
+    shooterMotor.configNominalOutputReverse(0, timeout);
+    shooterMotor.configPeakOutputForward(1, timeout);
+    shooterMotor.configPeakOutputReverse(-1, timeout);
+    shooterMotor.config_kF(slotIdx, kF, timeout);
+    shooterMotor.config_kP(slotIdx, kP, timeout);
+    shooterMotor.config_kI(slotIdx, kI, timeout);
+    shooterMotor.config_kD(slotIdx, kD, timeout);
+    //Configure Motor 2
+    shooterMotor2.configFactoryDefault();
+    shooterMotor2.setSensorPhase(true);
+    shooterMotor.configNominalOutputForward(0, timeout);
+    shooterMotor2.configNominalOutputReverse(0, timeout);
+    shooterMotor.configPeakOutputForward(1, timeout);
+    shooterMotor.configPeakOutputReverse(-1, timeout);
+    shooterMotor2.config_kF(slotIdx, kF, timeout);
+    shooterMotor2.config_kP(slotIdx, kP, timeout);
+    shooterMotor2.config_kI(slotIdx, kI, timeout);
+    shooterMotor2.config_kD(slotIdx, kD, timeout);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  
-
 }

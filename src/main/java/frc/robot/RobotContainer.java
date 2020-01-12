@@ -10,8 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.Drive;
-import frc.robot.subsystems.Drivetrain;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.ExampleSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -21,11 +22,10 @@ import frc.robot.subsystems.Drivetrain;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Drivetrain m_Drivetrain = new Drivetrain();
+  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final Drive m_autoCommand = new Drive(m_Drivetrain);
+  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  public static XboxController controller = new XboxController(0);
 
 
   /**
@@ -34,7 +34,10 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    a.whileHeld(new ExampleCommand(m_exampleSubsystem));
   }
+  public static XboxController controller = new XboxController(0);
+  public static JoystickButton a = new JoystickButton(controller,1);
 
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
@@ -52,7 +55,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An Drive will run in autonomous
+    // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
 }

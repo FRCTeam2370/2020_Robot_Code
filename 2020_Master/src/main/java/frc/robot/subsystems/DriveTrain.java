@@ -23,9 +23,7 @@ public class DriveTrain extends SubsystemBase {
     this.setDefaultCommand(new DriveWithJoystick(this));
 }
 
-  public static double kP = 0;
-  public static double kI = 0;
-  public static double kD = 0; 
+
   public static WPI_TalonSRX left = new WPI_TalonSRX(Constants.DriveMotorLeft);
   public static WPI_TalonSRX right = new WPI_TalonSRX(Constants.DriveMotorRight);
   public static DifferentialDrive driveTrainMotors = new DifferentialDrive(left, right);

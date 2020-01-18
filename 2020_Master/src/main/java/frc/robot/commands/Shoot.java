@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 
 /**
@@ -54,6 +55,6 @@ public class Shoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Magazine.getHighestSlot()==0;
   }
 }

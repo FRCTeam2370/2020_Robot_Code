@@ -13,7 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-
+  
 public class Magazine extends SubsystemBase {
   /**
    * Creates a new Magazine.
@@ -22,7 +22,7 @@ public class Magazine extends SubsystemBase {
 
   }
 
-  public static double speed = 0.6;
+  public static double speed = 0.3;
   public static WPI_TalonSRX MagazineMotor = new WPI_TalonSRX(Constants.MagazineMotor);
   public static AnalogInput sensor1 = new AnalogInput(Constants.MagazineSensor1);
   public static AnalogInput sensor2 = new AnalogInput(Constants.MagazineSensor2);

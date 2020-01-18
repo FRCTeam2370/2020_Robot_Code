@@ -28,4 +28,7 @@ public final class Constants {
     public static int MagazineSensor4 = 3;
     public static int MagazineSensor5 = 4;
     public static int MagazineMotor = 6;
+    public static double driveTrainP = 0;
+    public static double driveTrainI = 0;
+    public static double driveTrainD = 0;
 }

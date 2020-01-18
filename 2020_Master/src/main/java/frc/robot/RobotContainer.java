@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.DriveWithLimelight;
 import frc.robot.commands.Shoot;
 import frc.robot.subsystems.Shooter;
 
@@ -29,6 +31,8 @@ public class RobotContainer {
 
   private static Joystick stick = new Joystick(0);
   private static double deadband = 0.1;
+  public static JoystickButton A = new JoystickButton(stick, 1);
+  
     public static double getLxAxis(){
     double raw = stick.getRawAxis(0);
     if(raw>0){
@@ -50,6 +54,10 @@ public class RobotContainer {
       return Math.abs(raw) < deadband ? 0.0 : (raw-deadband)/(1-deadband);
     }
 
+    public static boolean getAButton(){
+      return A.get();
+    }
+
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -66,6 +74,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    A.toggleWhenPressed(new DriveWithLimelight());
   }
 
 

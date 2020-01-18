@@ -26,11 +26,11 @@ public class LimeLight extends SubsystemBase {
   private boolean operatorAlign = true; 
   private static double offsetRatio = 15;
   public static double offsetInDegrees = 3.3;
-
+ 
   public double getOffsetDegrees(){
     return offsetInDegrees;
   }
-  public double getLimelightXOffset() {
+  public static double getLimelightXOffset() {
     double x = tx.getDouble(0.0);
     return x;
   }
@@ -49,7 +49,7 @@ public class LimeLight extends SubsystemBase {
     return operatorAlign;
   }
 
-  public double getRotation() {
+  public static double getRotation() {
     // Negetive is Left
     // Positive is Right
     return (getLimelightXOffset() - offsetInDegrees) / offsetRatio;

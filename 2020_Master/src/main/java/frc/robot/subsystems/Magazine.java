@@ -34,6 +34,7 @@ public class Magazine extends SubsystemBase {
   public static boolean slot3;
   public static boolean slot4;
   public static boolean slot5;
+  public static double minValue = 1.8;
 
   public static int getHighestSlot(){
     if(slot5){
@@ -55,6 +56,10 @@ public class Magazine extends SubsystemBase {
     MagazineMotor.set(ControlMode.PercentOutput, speed);
   }
 
+  public static void stopMagazine(){
+    MagazineMotor.stopMotor();
+  }
+
   public static void addBall(int slot){
     while(getHighestSlot()!=slot){
       RunMagazine();
@@ -65,11 +70,11 @@ public class Magazine extends SubsystemBase {
 
   @Override
   public void periodic() {
-    slot1 = sensor1.getValue() < 40;
-    slot2 = sensor2.getValue() < 40;
-    slot3 = sensor3.getValue() < 40;
-    slot4 = sensor4.getValue() < 40;
-    slot5 = sensor5.getValue() < 40;
+    slot1 = sensor1.getAverageVoltage() > minValue;
+    slot2 = sensor2.getAverageVoltage() > minValue;
+    slot3 = sensor3.getAverageVoltage() > minValue;
+    slot4 = sensor4.getAverageVoltage() > minValue;
+    slot5 = sensor5.getAverageVoltage() > minValue;
     // This method will be called once per scheduler run
   }
 }

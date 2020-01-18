@@ -22,7 +22,7 @@ public class WheelOfFortnite extends SubsystemBase {
 
   public static WPI_TalonSRX wheelSpinner = new WPI_TalonSRX(Constants.WheelSpinnerMotor);
   
-  
+
 
   @Override
   public void periodic() {

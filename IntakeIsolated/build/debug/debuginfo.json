@@ -1,0 +1,9 @@
+[
+  {
+    "artifact": "frcJava (in project IntakeIsolated)",
+    "target": "roborio",
+    "debugfile": "frcJava_roborio.debugconfig",
+    "project": "IntakeIsolated",
+    "language": "java"
+  }
+]

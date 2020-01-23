@@ -7,8 +7,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimeLight;
@@ -23,7 +21,7 @@ public class TurnWithLimelight extends PIDCommand {
   public TurnWithLimelight() {
     super(
         // The controller that the command will use
-        new PIDController(0.08, 0.0004, 0),
+        DriveTrain.controller,
         // This should return the measurement
         () -> LimeLight.getLimelightXOffset(),
         // This should return the setpoint (can also be a constant)
@@ -39,6 +37,6 @@ public class TurnWithLimelight extends PIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return LimeLight.getLimelightXOffset() == 0.0;
   }
 }

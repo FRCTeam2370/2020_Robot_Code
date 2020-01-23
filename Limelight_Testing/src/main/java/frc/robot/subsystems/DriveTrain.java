@@ -12,6 +12,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -22,6 +23,7 @@ public class DriveTrain extends SubsystemBase {
    */
   public DriveTrain() {
 }
+  public static PIDController controller = new PIDController(0.06, 0.05, 0);
   public static WPI_TalonSRX left = new WPI_TalonSRX(Constants.DriveMotorLeft);
   public static WPI_TalonSRX right = new WPI_TalonSRX(Constants.DriveMotorRight);
   public static WPI_TalonSRX left2 = new WPI_TalonSRX(Constants.DriveMotorLeft2);

@@ -12,8 +12,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.DriveWithLimelight;
+import frc.robot.commands.Auto;
+import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.TurnWithLimelight;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 
 /**
@@ -26,7 +29,9 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Shooter m_Shooter = new Shooter();
 
-  private final Shoot m_autoCommand = new Shoot(m_Shooter);
+  private final DriveTrain m_DriveTrain = new DriveTrain();
+
+  private final Auto m_autoCommand = new Auto();
 
 
   private static Joystick stick = new Joystick(0);
@@ -63,6 +68,8 @@ public class RobotContainer {
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    m_DriveTrain.setDefaultCommand(new DriveWithJoystick(m_DriveTrain));
+    m_Shooter.setDefaultCommand(new Shoot(m_Shooter));
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -74,7 +81,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    A.toggleWhenPressed(new DriveWithLimelight());
+    A.toggleWhenPressed(new TurnWithLimelight());
   }
 
 

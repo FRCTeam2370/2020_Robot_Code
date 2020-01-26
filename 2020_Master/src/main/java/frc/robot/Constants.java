@@ -17,9 +17,9 @@ package frc.robot;
  */
 public final class Constants {
     public static int shooterMotorLeft = 0;
-    public static int shooterMotorRight = 1;
-    public static int DriveMotorLeft = 2;
-    public static int DriveMotorRight = 3;
+    public static int shooterMotorRight = 3;
+    public static int DriveMotorLeft = 16;
+    public static int DriveMotorRight = 11;
     public static int IntakeMotor = 4;
     public static int WheelSpinnerMotor = 5;
     public static int MagazineSensor1 = 0;

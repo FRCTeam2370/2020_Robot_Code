@@ -36,16 +36,16 @@ public class Magazine extends SubsystemBase {
   public static boolean slot5;
   public static double minValue = 1.8;
 
-  public static int getHighestSlot(){
-    if(slot5){
+  public static int getHighestSlot() {
+    if (slot5) {
       return 5;
-    } else if(slot4){
+    } else if (slot4) {
       return 4;
-    } else if(slot3){
+    } else if (slot3) {
       return 3;
-    } else if(slot2){
+    } else if (slot2) {
       return 2;
-    } else if (slot1){
+    } else if (slot1) {
       return 1;
     } else{
       return 0;

@@ -30,7 +30,9 @@ public class LimeLight extends SubsystemBase {
   
   public static double totalTangent = Math.tan(getLimelightYOffset() + 50);
   public static double adjustedHeight = 80.75 - 15.5;
-  public static double distanceToTarget = adjustedHeight / totalTangent;
+  public static double distanceToTarget(){
+     return adjustedHeight / totalTangent;
+   }  
   /* 
      RECALCULATE AFTER MOUNTING LIMELIGHT ON THE ACTUAL ROBOT!
      Gets the distance to the scoring ports with the following equation:

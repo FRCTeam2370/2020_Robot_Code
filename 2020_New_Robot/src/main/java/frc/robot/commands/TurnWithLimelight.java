@@ -35,6 +35,10 @@ public class TurnWithLimelight extends PIDCommand {
 
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
+    DriveTrain.left1.configPeakOutputForward(0);
+    DriveTrain.left2.configPeakOutputForward(0);
+    DriveTrain.right1.configPeakOutputForward(0);
+    DriveTrain.right2.configPeakOutputForward(0);
   }
 
   // Returns true when the command should end.

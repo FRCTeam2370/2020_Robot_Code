@@ -7,32 +7,38 @@
 
 package frc.robot.subsystems;
 
+import java.math.MathContext;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpiutil.math.MathUtil;
 
 public class LimeLight extends SubsystemBase {
   /**
    * Creates a new LimeLight.
    */
   public LimeLight() {
-//On the test bot, LimeLight is mounted 15.5 inches off the ground and 50 degrees from level.
+//On the test bot, LimeLight is mounted 15.5 inches off the ground and 20 degrees from level.
+//LimeLight targeting must be set to "Top".
   }
   private static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
   private static NetworkTableEntry tx = table.getEntry("tx");
   private static NetworkTableEntry ty = table.getEntry("ty");
   private static NetworkTableEntry ta = table.getEntry("ta");
-  private boolean operatorAlign = true; 
+private boolean operatorAlign = true;           
   private static double offsetRatio = 15;
   public static double offsetInDegrees = 3.3;
 
-  
-  public static double totalTangent = Math.tan(getLimelightYOffset() + 50);
-  public static double adjustedHeight = 80.75 - 15.5;
+  public static double limelightAngle = 20;
+  public static double totalTangent;
+  public static double startingAngle;
+  public static double adjustedHeight = 82.5;  // 98 - 15.5
   public static double distanceToTarget(){
-     return adjustedHeight / totalTangent;
-   }  
+     return (adjustedHeight) / (totalTangent);
+   }
+
   /* 
      RECALCULATE AFTER MOUNTING LIMELIGHT ON THE ACTUAL ROBOT!
      Gets the distance to the scoring ports with the following equation:
@@ -40,6 +46,11 @@ public class LimeLight extends SubsystemBase {
      where d is the distance to the ports, h1 is the height of the LimeLight, h2 is the height of the Upper Target,
      a1 is the LimeLight's mount angle, and a2 is the angle between the LimeLight and the target. The LimeLight must be fixed in place for this to work.
   */
+
+  /*public static double getAdjustedDistance(){
+    double raw = 0.485*distanceToTarget()+84.6;
+    return raw;
+  }*/
 
   public double getOffsetDegrees(){
     return offsetInDegrees;
@@ -86,6 +97,10 @@ public class LimeLight extends SubsystemBase {
 
   @Override
   public void periodic() {
+    
+    startingAngle = getLimelightYOffset() + limelightAngle;
+    
+    totalTangent = Math.tan(Math.toRadians(startingAngle));
     // This method will be called once per scheduler run
   }
 }

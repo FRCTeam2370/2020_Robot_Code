@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.SetLEDs;
+import frc.robot.commands.StopLEDs;
 import frc.robot.subsystems.LEDs;
 
 /**
@@ -24,7 +25,7 @@ public class RobotContainer {
   private final LEDs m_exampleSubsystem = new LEDs();
 
   private final SetLEDs m_autoCommand = new SetLEDs(m_exampleSubsystem);
-
+  private final StopLEDs m_stop = new StopLEDs(m_exampleSubsystem);
 
 
   /**
@@ -42,6 +43,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    m_exampleSubsystem.setDefaultCommand(new SetLEDs(m_exampleSubsystem));
   }
 
 
@@ -53,5 +55,8 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
+  }
+  public Command getDisabledCommand() {
+    return m_stop;
   }
 }

@@ -11,19 +11,21 @@ import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpiutil.math.MathUtil;
 
 public class LEDs extends SubsystemBase {
   /**
    * Creates a new LEDs.
    */
+  public static AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(144);
+  public static AddressableLED ledLights = new AddressableLED(0);
    public LEDs() {
-    ledLights.setLength(m_ledBuffer.getLength());
-     ledLights.start();
-   ledLights.setData(m_ledBuffer);
+    LEDs.ledLights.setLength(LEDs.m_ledBuffer.getLength());
+    LEDs.ledLights.setData(LEDs.m_ledBuffer); 
+    LEDs.ledLights.start();
   }
 
-  public static AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(60);
-  public static AddressableLED ledLights = new AddressableLED(12);
+
 
   public static int segments = 5;
 
@@ -45,7 +47,8 @@ public class LEDs extends SubsystemBase {
 
   public static void setBothSides(int index, int r, int g, int b){
     m_ledBuffer.setRGB(index, r, g, b);
-    m_ledBuffer.setRGB(getLength()+1-index, r, g, b);
+    m_ledBuffer.setRGB(Math.subtractExact(getLength(), index+1) , r, g, b);
+    activate();
   }
 
 
@@ -58,16 +61,24 @@ public class LEDs extends SubsystemBase {
   public static void SweepAll(int Red,int Green,int Blue,double Delay){
     for(var i = 0; i<m_ledBuffer.getLength()/2; i++){
       setBothSides(i, Red, Green, Blue);
+      Timer.delay(Delay/(m_ledBuffer.getLength()/2));
     }
-    Timer.delay(Delay);
   }
 
   public static void Setsegment(int SegmentNumber, int Red, int Green, int Blue){
-    for(var i = (SegmentNumber*segmentLength())-segmentLength(); i<SegmentNumber*segmentLength(); i++){
+    for(var i = 0; i<SegmentNumber*segmentLength(); i++){
       setBothSides(i, Red, Green, Blue);
     }
   }
 
+  public static void SetsegmentFromTop(int SegmentNumber, int Red, int Green, int Blue){
+    for(var i = getSideLength(); i>SegmentNumber*segmentLength(); i--){
+      setBothSides(i, Red, Green, Blue);
+    }
+  }
+  public static void activate(){
+    ledLights.setData(m_ledBuffer);
+  }
 
 
   @Override

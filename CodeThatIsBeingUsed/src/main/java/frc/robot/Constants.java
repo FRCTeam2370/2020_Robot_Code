@@ -23,6 +23,6 @@ public final class Constants {
     public static int shooterMotor1 = 20;
     public static int MagazineMotor = 22;
     public static int IndexerMotor = 52;
-    public static int IntakeArmMotor = 10;
+    public static int IntakeArmMotor = 11;
     public static int IntakeMotor = 8;
 }

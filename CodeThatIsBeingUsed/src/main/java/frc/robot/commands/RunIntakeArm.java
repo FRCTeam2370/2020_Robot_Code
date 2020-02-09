@@ -10,40 +10,37 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.IntakeArm;
 
-public class StartShooter extends CommandBase {
+public class RunIntakeArm extends CommandBase {
   /**
-   * Creates a new StartShooter.
+   * Creates a new RunIntakeArm.
    */
-  private double targetV;
-  public StartShooter(Shooter s) {
-    addRequirements(s);
+  public RunIntakeArm(IntakeArm I) {
+    addRequirements(I);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Shooter.shooterMotor.configClosedloopRamp(2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    targetV =  5500.0 * 2048 / 600;
-    Shooter.shooterMotor.set(ControlMode.Velocity, -targetV);
+    IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, RobotContainer.getRyAxis()/2);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Shooter.getSpeed() > targetV-100 && Shooter.getSpeed() < targetV+100;
+    return false;
   }
 }

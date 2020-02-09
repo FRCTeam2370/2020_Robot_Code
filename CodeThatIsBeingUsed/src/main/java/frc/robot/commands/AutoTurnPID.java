@@ -19,7 +19,6 @@ public class AutoTurnPID extends PIDCommand {
   /**
    * Creates a new AutoTurnPID.
    */
-  
   public AutoTurnPID(double setpoint, DriveTrain drive) {
     super(
         // The controller that the command will use

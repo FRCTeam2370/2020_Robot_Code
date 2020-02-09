@@ -21,6 +21,6 @@ public class LoadBall extends ParallelCommandGroup {
   public LoadBall(Indexer i, Magazine m) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new IndexerIn(i).withTimeout(.5), new MagazineUp(m).withTimeout(.5));
+    super(new IndexerIn(i).withTimeout(.3), new MagazineUp(m).withTimeout(.3));
   }
 }

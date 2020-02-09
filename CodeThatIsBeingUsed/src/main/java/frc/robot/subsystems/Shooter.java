@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -26,11 +27,11 @@ public class Shooter extends SubsystemBase {
   private static int slotIdx = 0;
   public static double kF = .0522;//.0522
   public static double kP = 0.01;
-  public static double kI = 0.00000000001;
+  public static double kI = 0.000001;
   public static double kD = 0;
 
   public static double getSpeed(){
-    double raw = shooterMotor.getSensorCollection().getIntegratedSensorVelocity();
+    double raw = (shooterMotor.getSensorCollection().getIntegratedSensorVelocity() /2048)*600;
     return raw;
   }
   
@@ -64,6 +65,7 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Speed", getSpeed());
     // This method will be called once per scheduler run
   }
 }

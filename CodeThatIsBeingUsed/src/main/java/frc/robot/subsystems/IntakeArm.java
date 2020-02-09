@@ -7,7 +7,7 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -20,7 +20,7 @@ public class IntakeArm extends SubsystemBase {
 
   }
 
-  public static WPI_TalonFX IntakeArmMotor = new WPI_TalonFX(Constants.IntakeArmMotor); 
+  public static WPI_TalonSRX IntakeArmMotor = new WPI_TalonSRX(Constants.IntakeArmMotor); 
 
   @Override
   public void periodic() {

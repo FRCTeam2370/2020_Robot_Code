@@ -14,11 +14,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AlignAndShoot;
 import frc.robot.commands.DriveWithJoystick;
-import frc.robot.commands.LoadBall;
+import frc.robot.commands.LoadBallFull;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunIntakeArm;
 import frc.robot.commands.Shoot;
-import frc.robot.commands.TurnWithLimelight;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
@@ -105,11 +104,10 @@ public class RobotContainer {
   private void configureButtonBindings() {
     m_DriveTrain.setDefaultCommand(new DriveWithJoystick(m_DriveTrain));
     m_intakearm.setDefaultCommand(new RunIntakeArm(m_intakearm));    
-    B.whenPressed(new LoadBall(m_indexer,m_magazine));
+    B.whenPressed(new LoadBallFull(m_indexer,m_magazine));
     A.whileHeld(new Shoot(m_Shooter));
     RB.whileHeld(new AlignAndShoot(m_Shooter,m_magazine,m_indexer));
     LB.whileHeld(new RunIntake(m_intake));
-    Y.toggleWhenPressed(new TurnWithLimelight());
   }
 
 

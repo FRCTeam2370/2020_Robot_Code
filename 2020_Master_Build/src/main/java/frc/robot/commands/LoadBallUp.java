@@ -14,11 +14,11 @@ import frc.robot.subsystems.Magazine;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class LoadBall extends ParallelCommandGroup {
+public class LoadBallUp extends ParallelCommandGroup {
   /**
    * Creates a new LoadBall.
    */
-  public LoadBall(Indexer i, Magazine m) {
+  public LoadBallUp(Indexer i, Magazine m) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(new IndexerIn(i).withTimeout(.3), new MagazineUp(m).withTimeout(.3));

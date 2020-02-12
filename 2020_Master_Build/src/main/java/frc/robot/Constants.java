@@ -25,4 +25,6 @@ public final class Constants {
     public static int IndexerMotor = 30;
     public static int IntakeArmMotor = 21;
     public static int IntakeMotor = 20;
+    public static int ClimbMotorLeft = 41;
+    public static int ClimbMotorRight = 40;
 }

@@ -8,6 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeArm;
+import frc.robot.subsystems.Magazine;
+import frc.robot.subsystems.Shooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -16,9 +22,10 @@ public class AutoShootLoadPos3 extends SequentialCommandGroup {
   /**
    * Creates a new AutoShootLoadPos3.
    */
-  public AutoShootLoadPos3() {
+  public AutoShootLoadPos3(Shooter s, Magazine m, Indexer i, DriveTrain d, Intake in, IntakeArm ia) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super();
+    //Set drive param!
+     super(new AlignAndShoot(s, m, i),new AutoTurnPID(180, d), new DoTheIntakeThingRealGood(in, ia), new AutoDrivePID(20000, d)); 
   }
 }

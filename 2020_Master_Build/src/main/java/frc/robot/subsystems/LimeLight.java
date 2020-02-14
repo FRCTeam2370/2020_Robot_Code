@@ -29,6 +29,14 @@ public class LimeLight extends SubsystemBase {
   public static double offsetRatio = 15;
   public static double offsetInDegrees = 3.3;
   public SmartDashboard sDashboard;
+  
+  public static double limelightAngle = 25;
+  public static double totalTangent;
+  public static double startingAngle;
+  public static double adjustedHeight = 64.5;  // 98 - 33.5
+  public static double distanceToTarget(){
+     return (adjustedHeight) / (totalTangent);
+   }
 
   public double getOffsetDegrees(){
     return offsetInDegrees;
@@ -85,6 +93,9 @@ public class LimeLight extends SubsystemBase {
 
   @Override
   public void periodic() {
+    startingAngle = getLimelightYOffset() + limelightAngle;
+    totalTangent = Math.tan(Math.toRadians(startingAngle));
+    
     sendToDashboard();
     // This method will be called once per scheduler run
   }

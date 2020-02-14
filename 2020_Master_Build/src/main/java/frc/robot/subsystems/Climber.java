@@ -73,6 +73,11 @@ public static void setMotorsWithPID(double setpoint){
   ClimbMotorRight.set(ControlMode.Position, setpoint);
 }
 
+public static void setMotorsNoPID(double speed){
+  ClimbMotorLeft.set(ControlMode.PercentOutput, speed);
+  ClimbMotorRight.set(ControlMode.PercentOutput, speed);
+}
+
 public static void setMotorsAutoAdjust(double speed,double error,double multiplier){
   ClimbMotorLeft.set(ControlMode.PercentOutput, speed + (error * multiplier));
   ClimbMotorRight.set(ControlMode.PercentOutput, speed - (error * multiplier));

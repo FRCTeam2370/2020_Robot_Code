@@ -13,11 +13,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AlignAndShoot;
+import frc.robot.commands.Climb;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.LoadBallFull;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunIntakeArm;
 import frc.robot.commands.Shoot;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
@@ -39,6 +41,7 @@ public class RobotContainer {
   private final Indexer m_indexer = new Indexer();
   private final Intake m_intake = new Intake();
   private final IntakeArm m_intakearm = new IntakeArm();
+  private final Climber m_climber = new Climber();
 
   private final DriveWithJoystick m_autoCommand = new DriveWithJoystick(m_DriveTrain);
 
@@ -87,6 +90,12 @@ public class RobotContainer {
       return Math.abs(raw) < deadband ? 0.0 : (raw-deadband)/(1-deadband);
     }
 
+    public static double getBothTrigger(){
+      double left = getLeftTrigger();
+      double right = getRightTrigger();
+      return right-left;
+    }
+
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -104,6 +113,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     m_DriveTrain.setDefaultCommand(new DriveWithJoystick(m_DriveTrain));
     m_intakearm.setDefaultCommand(new RunIntakeArm(m_intakearm));    
+    m_climber.setDefaultCommand(new Climb(m_climber));
     B.whenPressed(new LoadBallFull(m_indexer,m_magazine));
     A.whileHeld(new Shoot(m_Shooter));
     RB.whileHeld(new AlignAndShoot(m_Shooter,m_magazine,m_indexer));

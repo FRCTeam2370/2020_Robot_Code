@@ -40,7 +40,7 @@ public class DriveWithJoystick extends CommandBase {
       if(RobotContainer.getLxAxis() !=0 && RobotContainer.getLyAxis() !=0)
       DriveTrain.arcadeDrive(RobotContainer.getLyAxis(), RobotContainer.getLxAxis());
     } else{
-      DriveTrain.arcadeDrive(RobotContainer.getClimbLy(), RobotContainer.getClimbLx());
+      DriveTrain.arcadeDrive(RobotContainer.getClimbLy()/2, RobotContainer.getClimbLx()/2);
     }
   }
 

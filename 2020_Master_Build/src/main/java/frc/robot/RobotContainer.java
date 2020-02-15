@@ -67,7 +67,7 @@ public class RobotContainer {
     SmartDashboard.putData(autoChooser);
   }
 
-  private final DriveWithJoystick m_autoCommand = new DriveWithJoystick(m_DriveTrain);
+  //private final DriveWithJoystick m_autoCommand = new DriveWithJoystick(m_DriveTrain);
 
   public static Joystick stick = new Joystick(0);
   public static Joystick climbStick = new Joystick(1);

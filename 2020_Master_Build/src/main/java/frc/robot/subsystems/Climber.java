@@ -31,19 +31,19 @@ public static boolean climbing = false;
 
 public static double getDifference(){
   double raw1 = ClimbMotorLeft.getSensorCollection().getQuadraturePosition();
-  double raw2 = ClimbMotorRight.getSensorCollection().getQuadraturePosition();
-  return raw1-raw2;
+  //double raw2 = ClimbMotorRight.getSensorCollection().getQuadraturePosition();
+  return raw1;//-raw2;
 }
 
 public static void ResetEncoders(){
-  //ClimbMotorLeft.getSensorCollection().setQuadraturePosition(0, timeout);
+  ClimbMotorLeft.getSensorCollection().setQuadraturePosition(0, timeout);
   ClimbMotorRight.getSensorCollection().setQuadraturePosition(0, timeout);
 }
 
 
 public static void configPID(){
   //Configure Motor 1
-  /*ClimbMotorLeft.configFactoryDefault();
+  ClimbMotorLeft.configFactoryDefault();
   ClimbMotorLeft.setSensorPhase(true);
   ClimbMotorLeft.configNominalOutputForward(0, timeout);
   ClimbMotorLeft.configNominalOutputReverse(0, timeout);
@@ -53,7 +53,7 @@ public static void configPID(){
   ClimbMotorLeft.config_kP(slotIdx, kP, timeout);
   ClimbMotorLeft.config_kI(slotIdx, kI, timeout);
   ClimbMotorLeft.config_kD(slotIdx, kD, timeout);
-*/
+
   //Configure Motor 2
   ClimbMotorRight.configFactoryDefault();
   ClimbMotorRight.setSensorPhase(true);
@@ -70,23 +70,23 @@ public static void configPID(){
 public static void setMotorsWithPID(double setpoint){
   configPID();
   //ClimbMotorLeft.set(ControlMode.Position, setpoint);
-  ClimbMotorRight.set(ControlMode.Position, setpoint);
+  //ClimbMotorRight.set(ControlMode.Position, setpoint);
 }
 
 public static void setMotorsNoPID(double speed){
   ClimbMotorLeft.set(ControlMode.PercentOutput, speed);
-  ClimbMotorRight.set(ControlMode.PercentOutput, speed);
+  //ClimbMotorRight.set(ControlMode.PercentOutput, speed);
 }
 
 public static void setMotorsAutoAdjust(double speed,double error,double multiplier){
   //ClimbMotorLeft.set(ControlMode.PercentOutput, speed + (error * multiplier));
-  ClimbMotorRight.set(ControlMode.PercentOutput, speed - (error * multiplier));
+  //ClimbMotorRight.set(ControlMode.PercentOutput, speed - (error * multiplier));
 }
 
 public static void gyroAdjust(){
   double angle = DriveTrain.getXRot();
   //ClimbMotorLeft.set(ControlMode.PercentOutput, angle);
-  ClimbMotorRight.set(ControlMode.PercentOutput, -angle);
+  //ClimbMotorRight.set(ControlMode.PercentOutput, -angle);
 }
 
 

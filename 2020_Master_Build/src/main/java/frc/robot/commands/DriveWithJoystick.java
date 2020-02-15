@@ -37,7 +37,10 @@ public class DriveWithJoystick extends CommandBase {
       DriveTrain.left2.setNeutralMode(NeutralMode.Coast);
       DriveTrain.right1.setNeutralMode(NeutralMode.Coast);
       DriveTrain.right2.setNeutralMode(NeutralMode.Coast);
+      if(RobotContainer.getLxAxis() !=0 && RobotContainer.getLyAxis() !=0)
       DriveTrain.arcadeDrive(RobotContainer.getLyAxis(), RobotContainer.getLxAxis());
+    } else{
+      DriveTrain.arcadeDrive(RobotContainer.getClimbLy(), RobotContainer.getClimbLx());
     }
   }
 

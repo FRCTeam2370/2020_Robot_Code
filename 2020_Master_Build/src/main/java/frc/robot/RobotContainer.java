@@ -74,7 +74,26 @@ public class RobotContainer {
       } else{
         return Math.abs(raw) < deadband ? 0.0 : (raw+deadband)/(1-deadband);
       }
-    }  
+    }
+
+    public static double getClimbLx(){
+      double raw = climbStick.getRawAxis(0);
+      if(raw>0){
+        return Math.abs(raw) < deadband ? 0.0 : -(raw-deadband)/(1-deadband);
+      } else{
+        return Math.abs(raw) < deadband ? 0.0 : -(raw+deadband)/(1-deadband);
+      }
+    }
+
+    public static double getClimbLy(){
+      double raw = climbStick.getRawAxis(1);
+      if(raw>0){
+        return Math.abs(raw) < deadband ? 0.0 : (raw-deadband)/(1-deadband);
+      } else{
+        return Math.abs(raw) < deadband ? 0.0 : (raw+deadband)/(1-deadband);
+      }
+    }
+
     public static double getRyAxis(){
       double raw = stick.getRawAxis(5);
       if(raw>0){

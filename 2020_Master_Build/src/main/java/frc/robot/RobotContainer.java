@@ -11,15 +11,21 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AlignAndShoot;
+import frc.robot.commands.AutoDrivePID;
+import frc.robot.commands.AutoShootLoadPos1;
+import frc.robot.commands.AutoShootLoadPos3;
+import frc.robot.commands.AutoShootReverse;
 import frc.robot.commands.Climb;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.LoadBallFull;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunIntakeArm;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.ShootFull;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Indexer;
@@ -35,7 +41,8 @@ import frc.robot.subsystems.Shooter;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  SendableChooser<Integer> autoChooser;
+
+
   // The robot's subsystems and commands are defined here...
   private final DriveTrain m_DriveTrain = new DriveTrain();
   private final Shooter m_Shooter = new Shooter();
@@ -44,6 +51,21 @@ public class RobotContainer {
   private final Intake m_intake = new Intake();
   private final IntakeArm m_intakearm = new IntakeArm();
   private final Climber m_climber = new Climber();
+  private AutoDrivePID autodrive = new AutoDrivePID(3000, m_DriveTrain);
+  private AutoShootReverse ShootReverse = new AutoShootReverse(m_Shooter, m_magazine, m_indexer, m_DriveTrain);
+  private ShootFull ShootItALL = new ShootFull (m_Shooter,m_magazine, m_indexer);
+  private AutoShootLoadPos1 Position1 = new AutoShootLoadPos1(m_Shooter, m_magazine, m_indexer, m_DriveTrain, m_intake, m_intakearm);
+  private AutoShootLoadPos3 Position3 = new AutoShootLoadPos3(m_Shooter, m_magazine, m_indexer, m_DriveTrain, m_intake, m_intakearm);
+
+  private SendableChooser<Command> autoChooser = new SendableChooser<Command>(); 
+    public void addAutoOptions(){
+    autoChooser.setDefaultOption("Go Straight", autodrive);
+    autoChooser.addOption("Turn, Shoot, and Reverse", ShootReverse);
+    autoChooser.addOption("Turn and Shoot", ShootItALL);
+    autoChooser.addOption("Turn, Shoot, and Load (Position 1)", Position1);
+    autoChooser.addOption("Turn, Shoot, and Load (Position 3)", Position3);
+    SmartDashboard.putData(autoChooser);
+  }
 
   private final DriveWithJoystick m_autoCommand = new DriveWithJoystick(m_DriveTrain);
 
@@ -136,6 +158,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    addAutoOptions();
   }
 
   /**
@@ -162,6 +185,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return autoChooser.getSelected();
   }
 }

@@ -48,6 +48,7 @@ public class RobotContainer {
   private final DriveWithJoystick m_autoCommand = new DriveWithJoystick(m_DriveTrain);
 
   public static Joystick stick = new Joystick(0);
+  public static Joystick climbStick = new Joystick(1);
   private static double deadband = 0.01;
   public static JoystickButton A = new JoystickButton(stick, 1);
   public static JoystickButton B = new JoystickButton(stick, 2);
@@ -55,6 +56,8 @@ public class RobotContainer {
   public static JoystickButton Y = new JoystickButton(stick, 4);
   public static JoystickButton LB = new JoystickButton(stick, 5);
   public static JoystickButton RB = new JoystickButton(stick, 6);
+  public static JoystickButton Select = new JoystickButton(stick, 7);
+  public static JoystickButton ClimbStart = new JoystickButton(climbStick, 8);
 
   public static double getLxAxis(){
     double raw = stick.getRawAxis(0);
@@ -89,6 +92,16 @@ public class RobotContainer {
 
     public static double getLeftTrigger(){
       double raw = stick.getRawAxis(2);
+      return Math.abs(raw) < deadband ? 0.0 : (raw-deadband)/(1-deadband);
+    }
+    
+    public static double getClimbRightTrigger(){
+      double raw = climbStick.getRawAxis(3);
+      return Math.abs(raw) < deadband ? 0.0 : (raw-deadband)/(1-deadband);
+    }
+
+    public static double getClimbLeftTrigger(){
+      double raw = climbStick.getRawAxis(2);
       return Math.abs(raw) < deadband ? 0.0 : (raw-deadband)/(1-deadband);
     }
 

@@ -75,7 +75,7 @@ public static void setMotorsWithPID(double setpoint){
 
 public static void setMotorsNoPID(double speed){
   ClimbMotorLeft.set(ControlMode.PercentOutput, speed);
-  //ClimbMotorRight.set(ControlMode.PercentOutput, speed);
+  ClimbMotorRight.set(ControlMode.PercentOutput, speed);
 }
 
 public static void setMotorsAutoAdjust(double speed,double error,double multiplier){
@@ -84,7 +84,7 @@ public static void setMotorsAutoAdjust(double speed,double error,double multipli
 }
 
 public static void gyroAdjust(){
-  double angle = DriveTrain.getXRot();
+  //double angle = DriveTrain.getXRot();
   //ClimbMotorLeft.set(ControlMode.PercentOutput, angle);
   //ClimbMotorRight.set(ControlMode.PercentOutput, -angle);
 }

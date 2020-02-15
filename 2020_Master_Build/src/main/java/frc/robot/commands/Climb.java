@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -17,6 +18,7 @@ public class Climb extends CommandBase {
   /**
    * Creates a new Climb.
    */
+  private int inverted;
   public Climb(Climber c) {
     addRequirements(c);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -25,6 +27,8 @@ public class Climb extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Climber.ClimbMotorRight.setInverted(true);
+    Climber.ClimbMotorLeft.setInverted(false);
     Climber.ClimbMotorLeft.setNeutralMode(NeutralMode.Brake);
     Climber.ClimbMotorRight.setNeutralMode(NeutralMode.Brake);
   }
@@ -32,8 +36,15 @@ public class Climb extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Climber.setMotorsNoPID(RobotContainer.getBothTrigger());
+    if(RobotContainer.ClimbStart.get()){
+      inverted = -1;
+    } else{
+      inverted = 1;
+    }
+    Climber.ClimbMotorLeft.set(ControlMode.PercentOutput, RobotContainer.getLeftTrigger() * inverted);
+    Climber.ClimbMotorRight.set(ControlMode.PercentOutput, RobotContainer.getRightTrigger() * inverted);
   }
+
 
   // Called once the command ends or is interrupted.
   @Override

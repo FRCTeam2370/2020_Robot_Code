@@ -22,7 +22,7 @@ public class LimeLight extends SubsystemBase {
   }
   public static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
   public static NetworkTableEntry tx = table.getEntry("tx");
-  public NetworkTableEntry ty = table.getEntry("ty");
+  public static NetworkTableEntry ty = table.getEntry("ty");
   public NetworkTableEntry ta = table.getEntry("ta");
   public NetworkTableEntry LED = table.getEntry("ledMode");
   public boolean operatorAlign = true; 
@@ -46,7 +46,7 @@ public class LimeLight extends SubsystemBase {
     return x;
   }
 
-  public double getLimelightYOffset() {
+  public static double getLimelightYOffset() {
     double y = ty.getDouble(0.0);
     return y;
   }

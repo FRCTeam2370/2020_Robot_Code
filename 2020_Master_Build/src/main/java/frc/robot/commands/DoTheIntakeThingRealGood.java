@@ -27,7 +27,7 @@ public class DoTheIntakeThingRealGood extends CommandBase {
   @Override
   public void initialize() {
     IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, -.2);
-    Intake.intakeMotor.set(ControlMode.PercentOutput, Intake.intakeSpeed);
+    //Intake.intakeMotor.set(ControlMode.PercentOutput, Intake.intakeSpeed);
     Timer.delay(.5);
   }
 

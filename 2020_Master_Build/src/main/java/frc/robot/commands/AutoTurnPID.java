@@ -24,13 +24,13 @@ public class AutoTurnPID extends PIDCommand {
         // The controller that the command will use
         new PIDController(0.025, 0.0001, 0),
         // This should return the measurement
-        () -> -DriveTrain.getAngle(),
+        () -> -DriveTrain.getYaw(),
         // This should return the setpoint (can also be a constant)
         () -> -setpoint,
         // This uses the output
         output -> {DriveTrain.arcadeDrive(0, output);
           // Use the output here
-        SmartDashboard.putNumber("Angle", DriveTrain.getAngle());
+        SmartDashboard.putNumber("Angle", DriveTrain.getYaw());
         });
         getController().setTolerance(10);
     // Use addRequirements() here to declare subsystem dependencies.

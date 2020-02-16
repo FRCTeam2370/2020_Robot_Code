@@ -21,7 +21,7 @@ import frc.robot.commands.AutoShootLoadPos3;
 import frc.robot.commands.AutoShootReverse;
 import frc.robot.commands.Climb;
 import frc.robot.commands.DriveWithJoystick;
-import frc.robot.commands.LoadBallFull;
+import frc.robot.commands.LoadBallUp;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunIntakeArm;
 import frc.robot.commands.Shoot;
@@ -71,7 +71,7 @@ public class RobotContainer {
 
   public static Joystick stick = new Joystick(0);
   public static Joystick climbStick = new Joystick(1);
-  private static double deadband = 0.01;
+  private static double deadband = 0.005;
   public static JoystickButton A = new JoystickButton(stick, 1);
   public static JoystickButton B = new JoystickButton(stick, 2);
   public static JoystickButton X = new JoystickButton(stick, 3);
@@ -171,7 +171,7 @@ public class RobotContainer {
     m_DriveTrain.setDefaultCommand(new DriveWithJoystick(m_DriveTrain));
     m_intakearm.setDefaultCommand(new RunIntakeArm(m_intakearm));    
     m_climber.setDefaultCommand(new Climb(m_climber));
-    B.whenPressed(new LoadBallFull(m_indexer,m_magazine));
+    B.whenPressed(new LoadBallUp(m_indexer,m_magazine));
     A.whileHeld(new Shoot(m_Shooter));
     RB.whileHeld(new AlignAndShoot(m_Shooter,m_magazine,m_indexer));
     LB.whileHeld(new RunIntake(m_intake));

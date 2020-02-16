@@ -10,9 +10,11 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.DriveTrain;
 
 public class Climb extends CommandBase {
   /**
@@ -31,18 +33,20 @@ public class Climb extends CommandBase {
     Climber.ClimbMotorLeft.setInverted(false);
     Climber.ClimbMotorLeft.setNeutralMode(NeutralMode.Brake);
     Climber.ClimbMotorRight.setNeutralMode(NeutralMode.Brake);
+    DriveTrain.ahrs.reset();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    SmartDashboard.putNumber("Roll", DriveTrain.getRoll());
     if(RobotContainer.ClimbStart.get()){
       inverted = -1;
     } else{
       inverted = 1;
     }
-    Climber.ClimbMotorLeft.set(ControlMode.PercentOutput, RobotContainer.getLeftTrigger() * inverted);
-    Climber.ClimbMotorRight.set(ControlMode.PercentOutput, RobotContainer.getRightTrigger() * inverted);
+    Climber.ClimbMotorLeft.set(ControlMode.PercentOutput, RobotContainer.getClimbLeftTrigger() * inverted);
+    Climber.ClimbMotorRight.set(ControlMode.PercentOutput, RobotContainer.getClimbRightTrigger() * inverted);
   }
 
 

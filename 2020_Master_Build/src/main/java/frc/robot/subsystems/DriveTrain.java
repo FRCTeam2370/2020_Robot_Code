@@ -33,8 +33,16 @@ public class DriveTrain extends SubsystemBase {
   public static DifferentialDrive driveTrainMotors = new DifferentialDrive(left, right);
   public static AHRS ahrs = new AHRS();
 
-  public static double getAngle(){
-    double angle = ahrs.getAngle();
+  public static double getYaw(){
+    double angle = ahrs.getYaw();
+    return angle;
+  }
+  public static double getRoll(){
+    double angle = ahrs.getRoll();
+    return angle;
+  }
+  public static double getPitch(){
+    double angle  = ahrs.getPitch();
     return angle;
   }
 

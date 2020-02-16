@@ -19,10 +19,11 @@ public class AutoTurnPID extends PIDCommand {
   /**
    * Creates a new AutoTurnPID.
    */
+  //170 degrees is 180 degree turn :-/
   public AutoTurnPID(double setpoint, DriveTrain drive) {
     super(
         // The controller that the command will use
-        new PIDController(0.025, 0.0001, 0),
+        new PIDController(0.01, 0.008, 0),
         // This should return the measurement
         () -> -DriveTrain.getYaw(),
         // This should return the setpoint (can also be a constant)
@@ -32,8 +33,9 @@ public class AutoTurnPID extends PIDCommand {
           // Use the output here
         SmartDashboard.putNumber("Angle", DriveTrain.getYaw());
         });
-        getController().setTolerance(10);
-    // Use addRequirements() here to declare subsystem dependencies.
+        getController().setTolerance(setpoint * .05);
+        DriveTrain.ahrs.reset();
+        // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
   }
 

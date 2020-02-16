@@ -31,7 +31,7 @@ public class StartShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    targetV =  1800.0 * 2048 / 600;
+    targetV =  2000.0 * 2048 / 600;
     Shooter.shooterMotor.set(ControlMode.Velocity, -targetV);
   }
 
@@ -46,6 +46,6 @@ public class StartShooter extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return -Shooter.getSpeed() > 1800-200 && -Shooter.getSpeed() < 1800+200;
+    return -Shooter.getSpeed() > 2000-600 && -Shooter.getSpeed() < 6000+600;
   }
 }

@@ -14,7 +14,7 @@ import frc.robot.Constants;
 
 public class Indexer extends SubsystemBase {
   /**
-   * Creates a new Magazine.
+   * Creates a new Indexer.
    */
   public Indexer() {
 

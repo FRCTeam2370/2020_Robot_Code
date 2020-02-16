@@ -20,9 +20,10 @@ public class AutoDrivePID extends PIDCommand {
    * Creates a new AutoDrivePID.
    */
   public AutoDrivePID(double setpoint, DriveTrain drive) {
+    
     super(
         // The controller that the command will use
-        new PIDController(0.000027, 0.000000, 0),
+        new PIDController(0.00003, 0.000000, 0),
         // This should return the measurement
         () ->-DriveTrain.getPosition(),
         // This should return the setpoint (can also be a constant)
@@ -32,10 +33,9 @@ public class AutoDrivePID extends PIDCommand {
           // Use the output here
         SmartDashboard.putNumber("encoderValue", -DriveTrain.getPosition());
         });
-        getController().setTolerance(2000);
+        getController().setTolerance(setpoint * .08);
         // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
-
   }
 
   

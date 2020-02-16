@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AlignAndShoot;
+import frc.robot.commands.AllShoot;
 import frc.robot.commands.AutoDrivePID;
 import frc.robot.commands.AutoShootLoadPos1;
 import frc.robot.commands.AutoShootLoadPos3;
@@ -22,10 +23,11 @@ import frc.robot.commands.AutoShootReverse;
 import frc.robot.commands.Climb;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.LoadBallUp;
+import frc.robot.commands.MagazineDown;
+import frc.robot.commands.ResetEncoders;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunIntakeArm;
 import frc.robot.commands.Shoot;
-import frc.robot.commands.ShootFull;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Indexer;
@@ -43,17 +45,20 @@ import frc.robot.subsystems.Shooter;
 public class RobotContainer {
 
 
+
   // The robot's subsystems and commands are defined here...
+  
   private final DriveTrain m_DriveTrain = new DriveTrain();
+  public Command m_reset = new ResetEncoders(m_DriveTrain);
   private final Shooter m_Shooter = new Shooter();
   private final Magazine m_magazine = new Magazine();
   private final Indexer m_indexer = new Indexer();
   private final Intake m_intake = new Intake();
   private final IntakeArm m_intakearm = new IntakeArm();
   private final Climber m_climber = new Climber();
-  private AutoDrivePID autodrive = new AutoDrivePID(3000, m_DriveTrain);
+  private AutoDrivePID autodrive = new AutoDrivePID(100000, m_DriveTrain);
   private AutoShootReverse ShootReverse = new AutoShootReverse(m_Shooter, m_magazine, m_indexer, m_DriveTrain);
-  private ShootFull ShootItALL = new ShootFull (m_Shooter,m_magazine, m_indexer);
+  private AllShoot ShootItALL = new AllShoot(m_Shooter,m_magazine, m_indexer);
   private AutoShootLoadPos1 Position1 = new AutoShootLoadPos1(m_Shooter, m_magazine, m_indexer, m_DriveTrain, m_intake, m_intakearm);
   private AutoShootLoadPos3 Position3 = new AutoShootLoadPos3(m_Shooter, m_magazine, m_indexer, m_DriveTrain, m_intake, m_intakearm);
 
@@ -171,7 +176,8 @@ public class RobotContainer {
     m_DriveTrain.setDefaultCommand(new DriveWithJoystick(m_DriveTrain));
     m_intakearm.setDefaultCommand(new RunIntakeArm(m_intakearm));    
     m_climber.setDefaultCommand(new Climb(m_climber));
-    B.whenPressed(new LoadBallUp(m_indexer,m_magazine));
+    B.whileHeld(new LoadBallUp(m_indexer,m_magazine));
+    Y.whileHeld(new MagazineDown(m_magazine));
     A.whileHeld(new Shoot(m_Shooter));
     RB.whileHeld(new AlignAndShoot(m_Shooter,m_magazine,m_indexer));
     LB.whileHeld(new RunIntake(m_intake));

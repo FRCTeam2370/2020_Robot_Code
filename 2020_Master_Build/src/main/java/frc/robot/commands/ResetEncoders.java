@@ -16,23 +16,16 @@ public class ResetEncoders extends CommandBase {
   /**
    * Creates a new ResetEncoders.
    */
-  public ResetEncoders() {
+  public ResetEncoders(DriveTrain drive) {
+    addRequirements(drive);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    DriveTrain.left1.getSensorCollection().setIntegratedSensorPosition(0, 30);
-    DriveTrain.left1.configPeakOutputForward(.4);
-    DriveTrain.left1.configPeakOutputReverse(-.4);
-    DriveTrain.right1.configPeakOutputForward(.4);
-    DriveTrain.right1.configPeakOutputReverse(-.4);
-    DriveTrain.left2.configPeakOutputForward(.4);
-    DriveTrain.left2.configPeakOutputReverse(-.4);
-    DriveTrain.right2.configPeakOutputForward(.4);
-    DriveTrain.right2.configPeakOutputReverse(-.4);
     DriveTrain.ahrs.reset();
+    DriveTrain.left1.getSensorCollection().setIntegratedSensorPosition(0, 30);
     DriveTrain.left1.setNeutralMode(NeutralMode.Brake);
     DriveTrain.right1.setNeutralMode(NeutralMode.Brake);
     DriveTrain.left2.setNeutralMode(NeutralMode.Brake);

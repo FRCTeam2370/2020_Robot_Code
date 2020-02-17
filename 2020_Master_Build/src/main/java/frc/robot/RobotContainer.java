@@ -22,6 +22,7 @@ import frc.robot.commands.AutoShootLoadPos3;
 import frc.robot.commands.AutoShootReverse;
 import frc.robot.commands.Climb;
 import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.LimelightDistance;
 import frc.robot.commands.LoadBallUp;
 import frc.robot.commands.MagazineDown;
 import frc.robot.commands.ResetEncoders;
@@ -33,6 +34,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeArm;
+import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 
@@ -50,6 +52,7 @@ public class RobotContainer {
   
   private final DriveTrain m_DriveTrain = new DriveTrain();
   public Command m_reset = new ResetEncoders(m_DriveTrain);
+  private final LimeLight m_limelight = new LimeLight();
   private final Shooter m_Shooter = new Shooter();
   private final Magazine m_magazine = new Magazine();
   private final Indexer m_indexer = new Indexer();
@@ -176,6 +179,7 @@ public class RobotContainer {
     m_DriveTrain.setDefaultCommand(new DriveWithJoystick(m_DriveTrain));
     m_intakearm.setDefaultCommand(new RunIntakeArm(m_intakearm));    
     m_climber.setDefaultCommand(new Climb(m_climber));
+    m_limelight.setDefaultCommand(new LimelightDistance(m_limelight));
     B.whileHeld(new LoadBallUp(m_indexer,m_magazine));
     Y.whileHeld(new MagazineDown(m_magazine));
     A.whileHeld(new Shoot(m_Shooter));

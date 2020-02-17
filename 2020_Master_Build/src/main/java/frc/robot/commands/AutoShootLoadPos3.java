@@ -26,6 +26,6 @@ public class AutoShootLoadPos3 extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     //Set drive param!
-     super(new AlignAndShoot(s, m, i),new AutoTurnPID(180, d), new DoTheIntakeThingRealGood(in, ia), new AutoDrivePID(20000, d)); 
+     super(new AlignAndShoot(s, m, i).withTimeout(4),new AutoTurnPID(160, d),/* new DoTheIntakeThingRealGood(in, ia)*/ new AutoDrivePID(150000, d)); 
   }
 }

@@ -79,7 +79,7 @@ public class RobotContainer {
 
   public static Joystick stick = new Joystick(0);
   public static Joystick climbStick = new Joystick(1);
-  private static double deadband = 0.005;
+  private static double deadband = 0.05;
   public static JoystickButton A = new JoystickButton(stick, 1);
   public static JoystickButton B = new JoystickButton(stick, 2);
   public static JoystickButton X = new JoystickButton(stick, 3);

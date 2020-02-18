@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.IntakeArm;
@@ -30,6 +31,7 @@ public class RunIntakeArm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    SmartDashboard.putNumber("Arm Position",IntakeArm.IntakeArmMotor.getSensorCollection().getQuadraturePosition());
     IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, RobotContainer.getRyAxis()/2);
   }
 

@@ -40,7 +40,7 @@ public class Climb extends CommandBase {
   @Override
   public void execute() {
     SmartDashboard.putNumber("Roll", DriveTrain.getRoll());
-
+    SmartDashboard.putNumber("RYAxis", RobotContainer.getClimbRyAxis());
     if(RobotContainer.ClimbStart.get()){
       inverted = -1;
     } else{
@@ -52,6 +52,7 @@ public class Climb extends CommandBase {
     } else{
     Climber.setMotorsNoPID(RobotContainer.getClimbRyAxis());
     }
+
   }
 
 

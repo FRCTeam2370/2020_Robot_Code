@@ -24,7 +24,8 @@ public class LimeLight extends SubsystemBase {
   public static NetworkTableEntry tx = table.getEntry("tx");
   public static NetworkTableEntry ty = table.getEntry("ty");
   public NetworkTableEntry ta = table.getEntry("ta");
-  public NetworkTableEntry LED = table.getEntry("ledMode");
+  public static NetworkTableEntry LED = table.getEntry("ledMode");
+  public static NetworkTableEntry Camera = table.getEntry("camMode");
   public boolean operatorAlign = true; 
   public static double offsetRatio = 15;
   public static double offsetInDegrees = 3.3;

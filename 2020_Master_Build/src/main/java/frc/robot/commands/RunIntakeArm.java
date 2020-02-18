@@ -33,6 +33,9 @@ public class RunIntakeArm extends CommandBase {
   public void execute() {
     SmartDashboard.putNumber("Arm Position",IntakeArm.IntakeArmMotor.getSensorCollection().getQuadraturePosition());
     IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, RobotContainer.getRyAxis()/2);
+    if(IntakeArm.IntakeArmMotor.isFwdLimitSwitchClosed() == 0){
+      IntakeArm.IntakeArmMotor.getSensorCollection().setQuadraturePosition(0, 30);
+    }
   }
 
   // Called once the command ends or is interrupted.

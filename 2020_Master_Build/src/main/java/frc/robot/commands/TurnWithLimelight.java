@@ -37,6 +37,18 @@ public class TurnWithLimelight extends PIDCommand {
     // Configure additional PID options by calling `getController` here.
   }
 
+  @Override
+  public void initialize() {
+  LimeLight.LED.setNumber(3);
+  LimeLight.Camera.setNumber(0);  
+  }
+
+  @Override
+  public void end(boolean interrupted) {
+    LimeLight.LED.setNumber(1);
+    LimeLight.Camera.setNumber(1);
+  }
+
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {

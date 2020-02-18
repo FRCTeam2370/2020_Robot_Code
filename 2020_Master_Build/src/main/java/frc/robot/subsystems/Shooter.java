@@ -31,7 +31,7 @@ public class Shooter extends SubsystemBase {
   public static double kP = 0.1;
   public static double kI = 0.000005;//000005;
   public static double kD = 0.15;
-  public static double speed = 2800;
+  public static double speed = 3100;
 
   public static double getSpeed(){
     double raw = (shooterMotor.getSensorCollection().getIntegratedSensorVelocity() /2048)*600;

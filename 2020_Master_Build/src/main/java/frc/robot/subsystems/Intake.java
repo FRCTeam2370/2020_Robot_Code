@@ -22,7 +22,7 @@ public class Intake extends SubsystemBase {
 
   public static WPI_TalonSRX intakeMotor = new WPI_TalonSRX(Constants.IntakeMotor);
 
-  public static double intakeSpeed = -1;
+  public static double intakeSpeed = 1;
 
   @Override
   public void periodic() {

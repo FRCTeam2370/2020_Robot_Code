@@ -10,6 +10,8 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
+import edu.wpi.first.wpilibj.RobotState;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
@@ -39,6 +41,7 @@ public class Climb extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(Timer.getMatchTime() < 35 && RobotState.isOperatorControl()){
     SmartDashboard.putNumber("Roll", DriveTrain.getRoll());
     SmartDashboard.putNumber("RYAxis", RobotContainer.getClimbRyAxis());
     if(RobotContainer.ClimbStart.get()){
@@ -52,8 +55,8 @@ public class Climb extends CommandBase {
     } else{
     Climber.setMotorsNoPID(RobotContainer.getClimbRyAxis());
     }
-
   }
+}
 
 
   // Called once the command ends or is interrupted.

@@ -26,7 +26,7 @@ public class LimeLight extends SubsystemBase {
   public NetworkTableEntry ta = table.getEntry("ta");
   public static NetworkTableEntry LED = table.getEntry("ledMode");
   public static NetworkTableEntry Camera = table.getEntry("camMode");
-  public boolean operatorAlign = true; 
+  public static boolean operatorAlign = false; 
   public static double offsetRatio = 15;
   public static double offsetInDegrees = 3.3;
   public SmartDashboard sDashboard;
@@ -76,14 +76,18 @@ public class LimeLight extends SubsystemBase {
   }
 
   public void setCameraMode() {
-    if (operatorAlign) {
+    if (operatorAlign == true) {
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(1);
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+      LimeLight.LED.setNumber(1);
+      LimeLight.Camera.setNumber(1); 
     } else {
-
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(0);
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+      LimeLight.LED.setNumber(3);
+      LimeLight.Camera.setNumber(0);
     }
+
   }
   public void sendToDashboard(){
     SmartDashboard.putString("IsThisConnected", NetworkTableInstance.getDefault().getTable("limelight").getSubTables().toString()); 
@@ -97,6 +101,7 @@ public class LimeLight extends SubsystemBase {
     startingAngle = getLimelightYOffset() + limelightAngle;
     totalTangent = Math.tan(Math.toRadians(startingAngle));
     
+
     sendToDashboard();
     // This method will be called once per scheduler run
   }

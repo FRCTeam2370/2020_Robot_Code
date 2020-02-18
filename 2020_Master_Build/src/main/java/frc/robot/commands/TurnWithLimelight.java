@@ -19,8 +19,8 @@ public class TurnWithLimelight extends PIDCommand {
   /**
    * Creates a new TurnWithLimelight.
    */
-  public TurnWithLimelight() {
-    super(
+  public TurnWithLimelight(LimeLight l) {
+    super(  
         // The controller that the command will use
         new PIDController(0.03, 0.05, 0),
         // This should return the measurement
@@ -31,22 +31,16 @@ public class TurnWithLimelight extends PIDCommand {
         output -> {DriveTrain.arcadeDrive(0, output);
           // Use the output here
         });
+        LimeLight.operatorAlign = true;
         getController().setTolerance(1);
-
+        addRequirements(l);
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
   }
 
   @Override
-  public void initialize() {
-  LimeLight.LED.setNumber(3);
-  LimeLight.Camera.setNumber(0);  
-  }
-
-  @Override
   public void end(boolean interrupted) {
-    LimeLight.LED.setNumber(1);
-    LimeLight.Camera.setNumber(1);
+    //LimeLight.operatorAlign = false;
   }
 
   // Returns true when the command should end.

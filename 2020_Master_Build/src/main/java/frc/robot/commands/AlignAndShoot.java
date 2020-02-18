@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 
@@ -19,9 +20,9 @@ public class AlignAndShoot extends ParallelCommandGroup {
   /**
    * Creates a new AlignAndShoot.
    */
-  public AlignAndShoot(Shooter s, Magazine m, Indexer i) {
+  public AlignAndShoot(Shooter s, Magazine m, Indexer i, LimeLight l) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new TurnWithLimelight(), new AllShoot(s, m, i));
+    super(new TurnWithLimelight(l), new AllShoot(s, m, i));
   }
 }

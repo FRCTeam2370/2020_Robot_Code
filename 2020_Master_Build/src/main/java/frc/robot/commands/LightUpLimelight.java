@@ -7,36 +7,33 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
-import frc.robot.subsystems.IntakeArm;
+import frc.robot.subsystems.LimeLight;
 
-public class RunIntakeArm extends CommandBase {
+public class LightUpLimelight extends CommandBase {
   /**
-   * Creates a new RunIntakeArm.
+   * Creates a new LightUpLimelight.
    */
-  public RunIntakeArm(IntakeArm I) {
-    addRequirements(I);
+  public LightUpLimelight() {
+    //addRequirements(l);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    LimeLight.operatorAlign = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, RobotContainer.getRyAxis()/2);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    LimeLight.operatorAlign = false;
   }
 
   // Returns true when the command should end.

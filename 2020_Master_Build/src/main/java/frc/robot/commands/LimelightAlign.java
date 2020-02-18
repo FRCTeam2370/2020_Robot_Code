@@ -7,25 +7,19 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Indexer;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.IntakeArm;
-import frc.robot.subsystems.Magazine;
-import frc.robot.subsystems.Shooter;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.subsystems.LimeLight;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AutoShootLoadPos3 extends SequentialCommandGroup {
+public class LimelightAlign extends ParallelCommandGroup {
   /**
-   * Creates a new AutoShootLoadPos3.
+   * Creates a new LimelightAlign.
    */
-  public AutoShootLoadPos3(Shooter s, Magazine m, Indexer i, DriveTrain d, Intake in, IntakeArm ia) {
+  public LimelightAlign(LimeLight l) {
     // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());
-    //Set drive param!
-     super(/*new AlignAndShoot(s, m, i).withTimeout(4),*/new AutoTurnPID(160, d),/* new DoTheIntakeThingRealGood(in, ia)*/ new AutoDrivePID(150000, d)); 
+    //super(new FooCommand(), new BarCommand());
+    super(new LightUpLimelight(), new TurnWithLimelight(l));
   }
 }

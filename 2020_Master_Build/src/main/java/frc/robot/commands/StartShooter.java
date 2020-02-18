@@ -46,6 +46,6 @@ public class StartShooter extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return -Shooter.getSpeed() > Shooter.speed-50 && -Shooter.getSpeed() < Shooter.speed+50;
+    return -Shooter.getSpeed() > Shooter.speed-100 && -Shooter.getSpeed() < Shooter.speed+100;
   }
 }

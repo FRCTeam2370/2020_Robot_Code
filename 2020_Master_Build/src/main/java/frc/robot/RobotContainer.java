@@ -114,7 +114,6 @@ public class RobotContainer {
         return Math.abs(raw) < deadband ? 0.0 : -(raw+deadband)/(1-deadband);
       }
     }
-    //This is a comment!
 
     public static double getClimbLy(){
       double raw = climbStick.getRawAxis(1);
@@ -134,6 +133,14 @@ public class RobotContainer {
       }
     }  
 
+    public static double getClimbRyAxis(){
+      double raw = climbStick.getRawAxis(5);
+      if(raw>0){
+        return Math.abs(raw) < deadband ? 0.0 : (raw-deadband)/(1-deadband);
+      } else{
+        return Math.abs(raw) < deadband ? 0.0 : (raw+deadband)/(1-deadband);
+      }
+    }  
 
     public static double getRightTrigger(){
       double raw = stick.getRawAxis(3);

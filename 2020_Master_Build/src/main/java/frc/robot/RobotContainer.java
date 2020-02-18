@@ -22,11 +22,11 @@ import frc.robot.commands.AutoShootLoadPos3;
 import frc.robot.commands.AutoShootReverse;
 import frc.robot.commands.Climb;
 import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.IntakeArmAuto;
 import frc.robot.commands.LimelightDistance;
 import frc.robot.commands.LoadBallUp;
 import frc.robot.commands.MagazineDown;
 import frc.robot.commands.ResetEncoders;
-import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunIntakeArm;
 import frc.robot.commands.Shoot;
 import frc.robot.subsystems.Climber;
@@ -192,7 +192,7 @@ public class RobotContainer {
     Y.whileHeld(new MagazineDown(m_magazine));
     A.whileHeld(new Shoot(m_Shooter));
     RB.whileHeld(new AlignAndShoot(m_Shooter,m_magazine,m_indexer));
-    LB.whileHeld(new RunIntake(m_intake));
+    LB.whileHeld(new IntakeArmAuto(m_intake, m_intakearm));
   }
 
 

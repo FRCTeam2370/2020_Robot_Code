@@ -17,7 +17,8 @@ public class IntakeArmAuto extends CommandBase {
   /**
    * Creates a new IntakeArmAuto.
    */
-  public IntakeArmAuto() {
+  public IntakeArmAuto(Intake in, IntakeArm ia) {
+    addRequirements(in,ia);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

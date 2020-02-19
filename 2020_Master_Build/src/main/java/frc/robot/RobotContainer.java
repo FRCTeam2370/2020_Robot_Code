@@ -23,7 +23,6 @@ import frc.robot.commands.Climb;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.IntakeArmAuto;
 import frc.robot.commands.LimelightAlign;
-import frc.robot.commands.LimelightDistance;
 import frc.robot.commands.LoadBallUp;
 import frc.robot.commands.MagazineDown;
 import frc.robot.commands.ResetEncoders;
@@ -187,7 +186,7 @@ public class RobotContainer {
     m_DriveTrain.setDefaultCommand(new DriveWithJoystick(m_DriveTrain));
     m_intakearm.setDefaultCommand(new RunIntakeArm(m_intakearm));    
     m_climber.setDefaultCommand(new Climb(m_climber));
-    m_limelight.setDefaultCommand(new LimelightDistance(m_limelight));
+    //m_limelight.setDefaultCommand(new LimelightDistance(m_limelight));
     B.whileHeld(new LoadBallUp(m_indexer,m_magazine));
     Y.whileHeld(new MagazineDown(m_magazine));
     A.whileHeld(new Shoot(m_Shooter));

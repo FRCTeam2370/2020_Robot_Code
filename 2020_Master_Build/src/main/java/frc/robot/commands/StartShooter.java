@@ -31,7 +31,7 @@ public class StartShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    targetV =  Shooter.speed * 2048 / 600;
+    targetV = Math.min(Shooter.speed, 6100) * 2048 / 600;
     Shooter.shooterMotor.set(ControlMode.Velocity, -targetV);
   }
 

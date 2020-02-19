@@ -15,6 +15,7 @@ public class LimelightDistance extends CommandBase {
   /**
    * Creates a new LimelightDistance.
    */
+  private LimeLight m_limelight = new LimeLight();
   public LimelightDistance(LimeLight l) {
     addRequirements(l);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -28,7 +29,7 @@ public class LimelightDistance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putNumber("distance", LimeLight.distanceToTarget());
+    SmartDashboard.putNumber("distance", m_limelight.distanceToTarget());
     SmartDashboard.putNumber("Y Value", LimeLight.getLimelightYOffset());
     SmartDashboard.putNumber("tan", LimeLight.totalTangent);
   }

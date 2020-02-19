@@ -22,6 +22,7 @@ public class Shooter extends SubsystemBase {
     configPID();
     
   }
+  private static LimeLight m_limelight = new LimeLight();
   public static WPI_TalonFX shooterMotor = new WPI_TalonFX(Constants.shooterMotor1);
   //public static WPI_TalonFX shooterMotor2 = new WPI_TalonFX(Constants.shooterMotor2);
   public static AnalogInput ShooterSensor = new AnalogInput(3);
@@ -68,6 +69,7 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
+    speed = 6303 + (-95.8 * m_limelight.distanceToTarget()) + (0.8 * Math.pow(m_limelight.distanceToTarget(), 2)) + (-0.0028 * Math.pow(m_limelight.distanceToTarget(), 3)) + (0.00000354 * Math.pow(m_limelight.distanceToTarget(), 4));
     SmartDashboard.putNumber("Speed", speed);
     SmartDashboard.putNumber("ActualSpeed", getSpeed());
     SmartDashboard.putNumber("sensorValue", ShooterSensor.getValue());

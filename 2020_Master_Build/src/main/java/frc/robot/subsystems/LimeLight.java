@@ -35,7 +35,7 @@ public class LimeLight extends SubsystemBase {
   public static double totalTangent;
   public static double startingAngle;
   public static double adjustedHeight = 64.5;  // 98 - 33.5
-  public static double distanceToTarget(){
+  public double distanceToTarget(){
      return (adjustedHeight) / (totalTangent);
    }
 

@@ -69,7 +69,7 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
-    speed = 6303 + (-95.8 * m_limelight.distanceToTarget()) + (0.8 * Math.pow(m_limelight.distanceToTarget(), 2)) + (-0.0028 * Math.pow(m_limelight.distanceToTarget(), 3)) + (0.00000354 * Math.pow(m_limelight.distanceToTarget(), 4));
+    speed =1800 * Math.pow(m_limelight.distanceToTarget(), 0.0525) + 0.5 * Math.pow(m_limelight.distanceToTarget(), 1.8); // 6303 + (-95.8 * m_limelight.distanceToTarget()) + (0.8 * Math.pow(m_limelight.distanceToTarget(), 2)) + (-0.0028 * Math.pow(m_limelight.distanceToTarget(), 3)) + (0.00000354 * Math.pow(m_limelight.distanceToTarget(), 4));
     SmartDashboard.putNumber("Speed", speed);
     SmartDashboard.putNumber("ActualSpeed", getSpeed());
     SmartDashboard.putNumber("sensorValue", ShooterSensor.getValue());

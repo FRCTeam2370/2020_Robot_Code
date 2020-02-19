@@ -31,7 +31,7 @@ public class IntakeArm extends SubsystemBase {
 
   @Override
   public void periodic() {
-    if(FwdLimit.get()){
+    if(!FwdLimit.get()){
     IntakeArm.IntakeArmMotor.getSensorCollection().setQuadraturePosition(0, 10);
   }
   SmartDashboard.putBoolean("limit switch",FwdLimit.get());

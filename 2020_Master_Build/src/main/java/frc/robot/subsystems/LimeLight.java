@@ -92,7 +92,7 @@ public class LimeLight extends SubsystemBase {
   public void sendToDashboard(){
     SmartDashboard.putString("IsThisConnected", NetworkTableInstance.getDefault().getTable("limelight").getSubTables().toString()); 
     SmartDashboard.putNumber("Limelight X", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0.0));
-    //SmartDashboard.putNumber("Limelight Y", getLimelightYOffset());
+    SmartDashboard.putNumber("Limelight Y", getLimelightYOffset());
     //SmartDashboard.putNumber("Limelight A", getLimelightTargetArea());
   }
 

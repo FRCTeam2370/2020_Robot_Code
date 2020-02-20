@@ -28,6 +28,7 @@ import frc.robot.commands.MagazineDown;
 import frc.robot.commands.ResetEncoders;
 import frc.robot.commands.RunIntakeArm;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.TurnWithLimelight;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Indexer;
@@ -190,7 +191,7 @@ public class RobotContainer {
     B.whileHeld(new LoadBallUp(m_indexer,m_magazine));
     Y.whileHeld(new MagazineDown(m_magazine));
     A.whileHeld(new Shoot(m_Shooter));
-    X.whileHeld(new LimelightAlign(m_limelight));
+    X.whileHeld(new TurnWithLimelight(m_limelight));
     RB.whileHeld(new AllShoot(m_Shooter,m_magazine,m_indexer));
     LB.whileHeld(new IntakeArmAuto(m_intake, m_intakearm));
   }

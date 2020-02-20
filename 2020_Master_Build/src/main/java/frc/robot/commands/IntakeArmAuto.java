@@ -31,9 +31,8 @@ public class IntakeArmAuto extends CommandBase {
   @Override
   public void execute() {
     Intake.intakeMotor.set(ControlMode.PercentOutput, Intake.intakeSpeed);
-    if(IntakeArm.IntakeArmMotor.getSensorCollection().getQuadraturePosition() > 5000){
     IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, -0.2);
-    }
+    
   }
 
   // Called once the command ends or is interrupted.

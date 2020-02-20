@@ -33,6 +33,7 @@ public class Shooter extends SubsystemBase {
   public static double kI = 0.000005;//000005;
   public static double kD = 0.15;
   public static double speed = 2485;
+  //don't touch these (\/) unless you know what you are doing
   public static double BaseSpeed = 1375;
   public static double scaling = 1.25;
 

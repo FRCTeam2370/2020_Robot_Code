@@ -7,40 +7,36 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 
-public class RunIntake extends CommandBase {
+public class ToggleManualControl extends CommandBase {
   /**
-   * Creates a new RunIntake.
+   * Creates a new ToggleManualControl.
    */
-  public RunIntake(Intake I) {
-    addRequirements(I);
+  public ToggleManualControl() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Shooter.ManualToggle = !Shooter.ManualToggle;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Intake.intakeMotor.set(ControlMode.PercentOutput, Intake.intakeSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Intake.intakeMotor.stopMotor();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

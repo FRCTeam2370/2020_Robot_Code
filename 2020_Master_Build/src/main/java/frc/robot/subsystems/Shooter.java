@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class Shooter extends SubsystemBase {
   /**
@@ -74,7 +75,11 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
+    if(ManualToggle){
     speed =Math.min(BaseSpeed * Math.pow(m_limelight.distanceToTarget(), 0.0525) + 0.5 * Math.pow(m_limelight.distanceToTarget(), scaling), 6100); // 6303 + (-95.8 * m_limelight.distanceToTarget()) + (0.8 * Math.pow(m_limelight.distanceToTarget(), 2)) + (-0.0028 * Math.pow(m_limelight.distanceToTarget(), 3)) + (0.00000354 * Math.pow(m_limelight.distanceToTarget(), 4));
+    } else{
+    speed = 3000 * RobotContainer.getRightTrigger();
+    }
     SmartDashboard.putNumber("Speed", speed);
     SmartDashboard.putNumber("Original Base Speed", StartingBaseSpeed);
     SmartDashboard.putNumber("Current Base Speed", BaseSpeed);

@@ -41,7 +41,7 @@ public class Climb extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Timer.getMatchTime() < 35 && RobotState.isOperatorControl()){
+    if(/*Timer.getMatchTime() < 35 &&*/ RobotState.isOperatorControl()){
     SmartDashboard.putNumber("Roll", DriveTrain.getRoll());
     SmartDashboard.putNumber("RYAxis", RobotContainer.getClimbRyAxis());
     if(RobotContainer.ClimbStart.get()){

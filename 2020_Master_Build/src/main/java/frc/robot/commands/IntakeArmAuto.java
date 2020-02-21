@@ -10,6 +10,7 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeArm;
 
@@ -31,15 +32,16 @@ public class IntakeArmAuto extends CommandBase {
   @Override
   public void execute() {
     Intake.intakeMotor.set(ControlMode.PercentOutput, Intake.intakeSpeed);
-    IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, -0.2);
-    
+    IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, IntakeArm.speed);
+    Indexer.IndexerMotor.set(ControlMode.PercentOutput, Indexer.indexerSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     Intake.intakeMotor.stopMotor();
-    IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, 0.2);
+    IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, -IntakeArm.speed);
+    Indexer.IndexerMotor.set(ControlMode.PercentOutput, 0);
   }
 
   // Returns true when the command should end.

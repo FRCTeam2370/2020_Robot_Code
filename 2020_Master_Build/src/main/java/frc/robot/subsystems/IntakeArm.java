@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,19 +20,31 @@ public class IntakeArm extends SubsystemBase {
    * Creates a new IntakeArm.
    */
   public IntakeArm() {
-    IntakeArmMotor.configForwardSoftLimitThreshold(-1000);
+    IntakeArmMotor.setInverted(false);
+    IntakeArmMotor.configForwardSoftLimitThreshold(2700);
     IntakeArmMotor.configForwardSoftLimitEnable(true);
-  }
+    IntakeArmMotor.configReverseSoftLimitThreshold(700);
+    IntakeArmMotor.configReverseSoftLimitEnable(true);
+    IntakeArmMotor.setSensorPhase(true);
+    IntakeArmMotor.setNeutralMode(NeutralMode.Coast);
 
+    IntakeArmMotor.configSupplyCurrentLimit(Arm);
+  }
+  public static SupplyCurrentLimitConfiguration Arm = new SupplyCurrentLimitConfiguration(true, 10, 0, 0);
   public static WPI_TalonSRX IntakeArmMotor = new WPI_TalonSRX(Constants.IntakeArmMotor); 
+  public static double speed = .75;
 
   @Override
   public void periodic() {
-    if(IntakeArmMotor.getSensorCollection().isFwdLimitSwitchClosed()){
+    //if(IntakeArmMotor.getSensorCollection().getQuadraturePosition() < 0){
+    //  IntakeArmMotor.getSensorCollection().setQuadraturePosition(IntakeArmMotor.getSensorCollection().getQuadraturePosition() * -1, 10);
+    //}
+    if(IntakeArmMotor.getSensorCollection().isRevLimitSwitchClosed()){
     IntakeArm.IntakeArmMotor.getSensorCollection().setQuadraturePosition(0, 10);
   }
-  SmartDashboard.putBoolean("limit switch",IntakeArmMotor.getSensorCollection().isFwdLimitSwitchClosed());
+  SmartDashboard.putBoolean("limit switch",IntakeArmMotor.getSensorCollection().isRevLimitSwitchClosed());
   SmartDashboard.putNumber("ArmPosition",IntakeArmMotor.getSensorCollection().getQuadraturePosition());
-    // This method will be called once per scheduler run
+  SmartDashboard.putNumber("Arm Current", IntakeArmMotor.getSupplyCurrent());
+  // This method will be called once per scheduler run
   }
 }

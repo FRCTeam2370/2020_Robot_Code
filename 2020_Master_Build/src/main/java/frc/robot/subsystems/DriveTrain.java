@@ -14,7 +14,6 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -23,6 +22,10 @@ public class DriveTrain extends SubsystemBase {
    * Creates a new DriveTrain.
    */
   public DriveTrain() {
+    left1.configFactoryDefault();
+    left2.configFactoryDefault();
+    right1.configFactoryDefault();
+    right2.configFactoryDefault();
     left1.configOpenloopRamp(.5);
     left2.configOpenloopRamp(.5);
     right1.configOpenloopRamp(.5);
@@ -86,7 +89,6 @@ public class DriveTrain extends SubsystemBase {
       right1.configPeakOutputReverse(-.3);
       right2.configPeakOutputForward(.3);
       right2.configPeakOutputReverse(-.3);
-      SmartDashboard.putString("Test", "Testing 123");
     } else{
       left1.configPeakOutputForward(1);
       left1.configPeakOutputReverse(-1);

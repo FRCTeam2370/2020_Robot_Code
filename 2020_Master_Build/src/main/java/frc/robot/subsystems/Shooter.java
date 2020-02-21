@@ -26,6 +26,7 @@ public class Shooter extends SubsystemBase {
   public static WPI_TalonFX shooterMotor = new WPI_TalonFX(Constants.shooterMotor1);
   //public static WPI_TalonFX shooterMotor2 = new WPI_TalonFX(Constants.shooterMotor2);
   public static AnalogInput ShooterSensor = new AnalogInput(3);
+  public static boolean ManualToggle = false;
   private static int timeout = 30;
   private static int slotIdx = 0;
   public static double kF = .0522;//.0522

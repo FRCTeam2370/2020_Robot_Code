@@ -20,10 +20,11 @@ public class IntakeArm extends SubsystemBase {
    * Creates a new IntakeArm.
    */
   public IntakeArm() {
+    IntakeArmMotor.configFactoryDefault();
     IntakeArmMotor.setInverted(false);
-    IntakeArmMotor.configForwardSoftLimitThreshold(2700);
+    IntakeArmMotor.configForwardSoftLimitThreshold(3000);
     IntakeArmMotor.configForwardSoftLimitEnable(true);
-    IntakeArmMotor.configReverseSoftLimitThreshold(700);
+    IntakeArmMotor.configReverseSoftLimitThreshold(2000);
     IntakeArmMotor.configReverseSoftLimitEnable(true);
     IntakeArmMotor.setSensorPhase(true);
     IntakeArmMotor.setNeutralMode(NeutralMode.Coast);
@@ -32,7 +33,7 @@ public class IntakeArm extends SubsystemBase {
   }
   public static SupplyCurrentLimitConfiguration Arm = new SupplyCurrentLimitConfiguration(true, 10, 0, 0);
   public static WPI_TalonSRX IntakeArmMotor = new WPI_TalonSRX(Constants.IntakeArmMotor); 
-  public static double speed = .75;
+  public static double speed = .65;
 
   @Override
   public void periodic() {
@@ -45,6 +46,7 @@ public class IntakeArm extends SubsystemBase {
   SmartDashboard.putBoolean("limit switch",IntakeArmMotor.getSensorCollection().isRevLimitSwitchClosed());
   SmartDashboard.putNumber("ArmPosition",IntakeArmMotor.getSensorCollection().getQuadraturePosition());
   SmartDashboard.putNumber("Arm Current", IntakeArmMotor.getSupplyCurrent());
+  SmartDashboard.putNumber("Pan Sensor",Indexer.PanSensor.getValue());
   // This method will be called once per scheduler run
   }
 }

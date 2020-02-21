@@ -26,10 +26,10 @@ public class DriveTrain extends SubsystemBase {
     left2.configFactoryDefault();
     right1.configFactoryDefault();
     right2.configFactoryDefault();
-    left1.configOpenloopRamp(.5);
-    left2.configOpenloopRamp(.5);
-    right1.configOpenloopRamp(.5);
-    right2.configOpenloopRamp(.5);
+    left1.configOpenloopRamp(1);
+    left2.configOpenloopRamp(1);
+    right1.configOpenloopRamp(1);
+    right2.configOpenloopRamp(1);
   }
 
   public static WPI_TalonFX left1 = new WPI_TalonFX(Constants.DriveMotorLeftFront);

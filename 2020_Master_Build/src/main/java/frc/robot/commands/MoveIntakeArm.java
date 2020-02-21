@@ -32,6 +32,8 @@ public class MoveIntakeArm extends CommandBase {
   @Override
   public void execute() {
     if(Shooter.ManualToggle){
+    IntakeArm.IntakeArmMotor.configForwardSoftLimitEnable(false);
+    IntakeArm.IntakeArmMotor.configReverseSoftLimitEnable(false);
     IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, RobotContainer.getRyAxis());
     }
   }

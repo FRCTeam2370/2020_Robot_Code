@@ -9,6 +9,8 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -20,11 +22,22 @@ public class Indexer extends SubsystemBase {
 
   }
 
-  public static double indexerSpeed = .5;
+  public static double indexerSpeed = .8;
 
   public static WPI_TalonSRX IndexerMotor = new WPI_TalonSRX(Constants.IndexerMotor);
 
+  public static AnalogInput PanSensor = new AnalogInput(0);
 
+  public static boolean IsBallInPan(){
+    double raw = PanSensor.getValue();
+    boolean status;
+    if(raw > 800){
+      status = true;
+    } else{
+      status = false;
+    }
+    return status;
+  }
 
   @Override
   public void periodic() {

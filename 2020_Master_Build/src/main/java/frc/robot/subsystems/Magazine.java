@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -20,11 +21,22 @@ public class Magazine extends SubsystemBase {
 
   }
 
-  public static double magazineSpeed = -.35;
+  public static double magazineSpeed = -.5;
 
   public static WPI_TalonSRX magazineMotor = new WPI_TalonSRX(Constants.MagazineMotor);
 
+  public static AnalogInput MagazineTopSensor = new AnalogInput(1);
 
+  public static boolean IsBallOnTop(){
+    double raw = MagazineTopSensor.getValue();
+    boolean status;
+    if(raw > 800){
+      status = true;
+    } else{
+      status = false;
+    }
+    return status;
+  }
 
   @Override
   public void periodic() {

@@ -34,6 +34,8 @@ public class IntakeArmAuto extends CommandBase {
   public void execute() {
     Intake.intakeMotor.set(ControlMode.PercentOutput, Intake.intakeSpeed);
     if(!Shooter.ManualToggle){
+    IntakeArm.IntakeArmMotor.configForwardSoftLimitEnable(true);
+    IntakeArm.IntakeArmMotor.configReverseSoftLimitEnable(true);
     IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, IntakeArm.speed);
     }
     Indexer.IndexerMotor.set(ControlMode.PercentOutput, Indexer.indexerSpeed);

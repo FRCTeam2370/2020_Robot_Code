@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeArm;
+import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 
@@ -21,9 +22,9 @@ public class ShootAndIntake extends ParallelCommandGroup {
   /**
    * Creates a new ShootAndIntake.
    */
-  public ShootAndIntake(Shooter s, Magazine m, Indexer i, Intake in, IntakeArm ia) {
+  public ShootAndIntake(Shooter s, Magazine m, Indexer i, Intake in, IntakeArm ia, LimeLight l) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new AllShoot(s, m, i),new IntakeArmAuto(in, ia));
+    super(new AlignAndShoot(s, m, i, l),new IntakeArmAuto(in, ia));
   }
 }

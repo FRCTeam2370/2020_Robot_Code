@@ -92,6 +92,8 @@ public static void gyroAdjust(){
 
 
   public Climber() {
+    ClimbMotorLeft.configFactoryDefault();
+    ClimbMotorRight.configFactoryDefault();
     ResetEncoders();
   }
 

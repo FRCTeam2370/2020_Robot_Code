@@ -34,6 +34,7 @@ public class Shooter extends SubsystemBase {
   public static double kD = 0.15;
   public static double speed = 2485;
   //don't touch these (\/) unless you know what you are doing
+  public static double StartingBaseSpeed = 1375;
   public static double BaseSpeed = 1375;
   public static double scaling = 1.25;
 
@@ -74,6 +75,8 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
     speed =Math.min(BaseSpeed * Math.pow(m_limelight.distanceToTarget(), 0.0525) + 0.5 * Math.pow(m_limelight.distanceToTarget(), scaling), 6100); // 6303 + (-95.8 * m_limelight.distanceToTarget()) + (0.8 * Math.pow(m_limelight.distanceToTarget(), 2)) + (-0.0028 * Math.pow(m_limelight.distanceToTarget(), 3)) + (0.00000354 * Math.pow(m_limelight.distanceToTarget(), 4));
     SmartDashboard.putNumber("Speed", speed);
+    SmartDashboard.putNumber("Original Base Speed", StartingBaseSpeed);
+    SmartDashboard.putNumber("Current Base Speed", BaseSpeed);
     SmartDashboard.putNumber("ActualSpeed", getSpeed());
     SmartDashboard.putNumber("sensorValue", ShooterSensor.getValue());
     // This method will be called once per scheduler run

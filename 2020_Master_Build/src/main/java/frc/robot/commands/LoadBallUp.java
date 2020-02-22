@@ -21,6 +21,6 @@ public class LoadBallUp extends ParallelCommandGroup {
   public LoadBallUp(Indexer i, Magazine m) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new IndexerIn(i), new MagazineUp(m));
+    super(new IndexerIn(i)/*, new MagazineUp(m, false)*/);
   }
 }

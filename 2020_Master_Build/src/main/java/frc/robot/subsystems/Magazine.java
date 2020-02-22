@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -25,7 +26,7 @@ public class Magazine extends SubsystemBase {
 
   public static WPI_TalonSRX magazineMotor = new WPI_TalonSRX(Constants.MagazineMotor);
 
-  public static AnalogInput MagazineTopSensor = new AnalogInput(1);
+  public static AnalogInput MagazineTopSensor = new AnalogInput(0);
 
   public static boolean IsBallOnTop(){
     double raw = MagazineTopSensor.getValue();
@@ -40,6 +41,7 @@ public class Magazine extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Magazine Top Ball",MagazineTopSensor.getValue());
     // This method will be called once per scheduler run
   }
 }

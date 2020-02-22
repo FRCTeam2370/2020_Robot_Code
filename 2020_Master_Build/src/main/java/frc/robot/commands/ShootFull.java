@@ -22,6 +22,6 @@ public class ShootFull extends ParallelCommandGroup {
   public ShootFull(Shooter s, Magazine m, Indexer i) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());super();
-    super(new Shoot(s), new IndexerIn(i), new MagazineUp(m));
+    super(new Shoot(s), new IndexerIn(i), new MagazineUpShoot(m));
   }
 }

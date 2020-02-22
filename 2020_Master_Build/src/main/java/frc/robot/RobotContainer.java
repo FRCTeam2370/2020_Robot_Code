@@ -24,6 +24,7 @@ import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.IntakeArmAuto;
 import frc.robot.commands.LoadBallUp;
 import frc.robot.commands.MagazineDown;
+import frc.robot.commands.MagazineUp;
 import frc.robot.commands.MoveIntakeArm;
 import frc.robot.commands.ResetEncoders;
 import frc.robot.commands.Shoot;
@@ -61,9 +62,9 @@ public class RobotContainer {
   private final IntakeArm m_intakearm = new IntakeArm();
   private final Climber m_climber = new Climber();
   private AutoDrivePID autodrive = new AutoDrivePID(100000, m_DriveTrain);
-  private AutoShootReverse ShootReverse = new AutoShootReverse(m_Shooter, m_magazine, m_indexer, m_DriveTrain);
+  private AutoShootReverse ShootReverse = new AutoShootReverse(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain);
   private AllShoot ShootItALL = new AllShoot(m_Shooter,m_magazine, m_indexer);
-  private AutoShootLoadPos1 Position1 = new AutoShootLoadPos1(m_Shooter, m_magazine, m_indexer, m_DriveTrain, m_intake, m_intakearm);
+  private AutoShootLoadPos1 Position1 = new AutoShootLoadPos1(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain, m_intake, m_intakearm);
   private AutoShootLoadPos3 Position3 = new AutoShootLoadPos3(m_Shooter, m_magazine, m_indexer, m_DriveTrain, m_intake, m_intakearm);
 
   private SendableChooser<Command> autoChooser = new SendableChooser<Command>(); 
@@ -190,6 +191,7 @@ public class RobotContainer {
     m_DriveTrain.setDefaultCommand(new DriveWithJoystick(m_DriveTrain));
     m_intakearm.setDefaultCommand(new MoveIntakeArm(m_intakearm));
     //ENABLE CLIMBER PLEASE >:-|
+    m_magazine.setDefaultCommand(new MagazineUp(m_magazine));
     m_climber.setDefaultCommand(new Climb(m_climber));
     //m_Shooter.setDefaultCommand(new BaseSpeedAdjust(m_Shooter));
     //m_limelight.setDefaultCommand(new LimelightDistance(m_limelight));

@@ -30,7 +30,7 @@ public class MagazineUp extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Magazine.IsBallOnTop()){
+    if(!Magazine.IsBallOnTop()){
     if(Indexer.IsBallInPan()){
     Magazine.magazineMotor.set(ControlMode.PercentOutput, Magazine.magazineSpeed);
     } else{
@@ -39,7 +39,7 @@ public class MagazineUp extends CommandBase {
   } else{
     Magazine.magazineMotor.set(ControlMode.PercentOutput, 0);
   }
-  }
+}
 
 
   // Called once the command ends or is interrupted.

@@ -12,6 +12,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeArm;
+import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 
@@ -22,10 +23,10 @@ public class AutoShootLoadPos1 extends SequentialCommandGroup {
   /**
    * Creates a new AutoShootLoadPos1.
    */
-  public AutoShootLoadPos1(Shooter s, Magazine m, Indexer i, DriveTrain d, Intake in, IntakeArm ia) {
+  public AutoShootLoadPos1(Shooter s, Magazine m, Indexer i,LimeLight l, DriveTrain d, Intake in, IntakeArm ia) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(/*new AlignAndShoot(s, m, i),*/new AutoTurnPID(180, d),/* new DoTheIntakeThingRealGood(in, ia),*/ new AutoDrivePID(20000, d)); 
+    super(new ResetEncoders(d), new AlignAndShoot(s, m, i, l).withTimeout(7),new AutoTurnPID(-120, d),new IntakeArmAuto(in, ia), new AutoDrivePID(100000, d)); 
   }
 }
 

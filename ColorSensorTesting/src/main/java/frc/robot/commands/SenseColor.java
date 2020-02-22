@@ -21,10 +21,10 @@ public class SenseColor extends CommandBase {
   private final ColorSensorV3 m_ColorSensor = new ColorSensorV3(I2CPort);
   private final ColorMatch m_ColorMatcher = new ColorMatch();
   
-  private final Color blue = ColorMatch.makeColor(0, 1, 1);
-  private final Color green = ColorMatch.makeColor(0, 1, 0);
-  private final Color red = ColorMatch.makeColor(1, 0, 0);
-  private final Color yellow = ColorMatch.makeColor(1, 1, 0);
+  private final Color blue = ColorMatch.makeColor(0.1, 0.4, 0.5);
+  private final Color green = ColorMatch.makeColor(0.15, 0.55, 0.25);
+  private final Color red = ColorMatch.makeColor(0.55, 0.3, 0.1);
+  private final Color yellow = ColorMatch.makeColor(0.3, 0.55, 0.1);
 
   /**
    * Creates a new SenseColor.

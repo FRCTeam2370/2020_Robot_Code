@@ -10,8 +10,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 
 public class LimeLight extends SubsystemBase {
   /**
@@ -90,11 +92,10 @@ public class LimeLight extends SubsystemBase {
 
   public void setCameraMode() {
     if (operatorAlign == false) {
-      NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(1);
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(0);
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
     } else {
-      NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(0);
-      NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(0);
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(1);
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     }
 
@@ -112,6 +113,11 @@ public class LimeLight extends SubsystemBase {
     startingAngle = getLimelightYOffset() + limelightAngle;
     totalTangent = Math.tan(Math.toRadians(startingAngle));
     
+    if(RobotState.isAutonomous() || RobotContainer.RB.get() || RobotContainer.X.get()){
+      operatorAlign = true;
+    } else{
+      operatorAlign = false;
+    }
     setCameraMode();
     sendToDashboard();
     // This method will be called once per scheduler run

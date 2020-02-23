@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -26,12 +27,12 @@ public static double kP = 0;
 public static double kI = 0;
 public static double kD = 0;
 public static double BottomPoint = 0;
-public static double TopPoint = 4000;
-public static double ClimbedPoint = 8000;
+public static double TopPoint = -200000;
+public static double ClimbedPoint = -400000;
 public static int WhatPoint = 0;
 public static boolean climbing = false;
 
-public static double getDifference(){
+public static double getEncoder(){
   double raw1 = ClimbMotorLeft.getSensorCollection().getQuadraturePosition();
   //double raw2 = ClimbMotorRight.getSensorCollection().getQuadraturePosition();
   return raw1;//-raw2;
@@ -101,6 +102,7 @@ public static void gyroAdjust(){
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Climber Position", Climber.getEncoder());
     // This method will be called once per scheduler run
   }
 }

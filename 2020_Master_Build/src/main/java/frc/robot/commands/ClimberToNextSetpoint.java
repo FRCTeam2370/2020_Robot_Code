@@ -14,6 +14,7 @@ public class ClimberToNextSetpoint extends CommandBase {
   /**
    * Creates a new ClimberToNextSetpoint.
    */
+  private double setpoint;
   public ClimberToNextSetpoint(Climber c) {
     addRequirements(c);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -27,17 +28,32 @@ public class ClimberToNextSetpoint extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+    if(Climber.WhatPoint == 0){
+      Climber.setMotorsNoPID(.5);
+      setpoint = Climber.TopPoint;
+      Climber.WhatPoint = 1;
+    }
+    if(Climber.WhatPoint == 1){
+      Climber.setMotorsNoPID(.5);
+      setpoint = Climber.ClimbedPoint;
+      Climber.WhatPoint = 2;
+    }
+    if(Climber.WhatPoint == 2){
+      Climber.setMotorsNoPID(-.5);
+      setpoint = Climber.TopPoint;
+      Climber.WhatPoint = 1;
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Climber.setMotorsNoPID(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Climber.getEncoder() > setpoint - 5000 && Climber.getEncoder() < setpoint + 5000;
   }
 }

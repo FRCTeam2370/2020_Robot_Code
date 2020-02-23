@@ -23,6 +23,7 @@ import frc.robot.commands.Climb;
 import frc.robot.commands.ClimberToNextSetpoint;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.IntakeArmAuto;
+import frc.robot.commands.LimelightAlign;
 import frc.robot.commands.LoadBallUp;
 import frc.robot.commands.MagazineDown;
 import frc.robot.commands.MagazineUp;
@@ -70,16 +71,18 @@ public class RobotContainer {
   private AlignAndShoot ShootItALL = new AlignAndShoot(m_Shooter,m_magazine, m_indexer,m_limelight);
   private AutoShootLoadPos1 Position1 = new AutoShootLoadPos1(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain, m_intake, m_intakearm);
   private AutoShootLoadPos3 Position3 = new AutoShootLoadPos3(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain, m_intake, m_intakearm);
+  
 
-  private SendableChooser<Command> autoChooser = new SendableChooser<Command>(); 
+  public static SendableChooser<Command> autoChooser = new SendableChooser<Command>();
     public void addAutoOptions(){
     autoChooser.setDefaultOption("Go Straight", autodrive);
     autoChooser.addOption("Turn, Shoot, and Reverse", ShootReverse);
     autoChooser.addOption("Turn and Shoot", ShootItALL);
     autoChooser.addOption("Turn, Shoot, and Load (Position 1)", Position1);
     autoChooser.addOption("Turn, Shoot, and Load (Position 3)", Position3);
-    SmartDashboard.putData(autoChooser);
-  }
+    SmartDashboard.putData("auto", autoChooser);
+    SmartDashboard.updateValues();
+    }
 
   //private final DriveWithJoystick m_autoCommand = new DriveWithJoystick(m_DriveTrain);
 
@@ -205,7 +208,7 @@ public class RobotContainer {
     m_magazine.setDefaultCommand(new MagazineUp(m_magazine));
     m_climber.setDefaultCommand(new Climb(m_climber));
     m_leds.setDefaultCommand(new SetLEDs(m_leds));
-    m_climber.setDefaultCommand(new ClimberToNextSetpoint(m_climber));
+//    m_climber.setDefaultCommand(new ClimberToNextSetpoint(m_climber));
     //m_Shooter.setDefaultCommand(new BaseSpeedAdjust(m_Shooter));
     //m_limelight.setDefaultCommand(new LimelightDistance(m_limelight));
     B.whileHeld(new LoadBallUp(m_indexer,m_magazine));

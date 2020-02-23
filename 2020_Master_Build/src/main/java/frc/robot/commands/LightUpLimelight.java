@@ -14,6 +14,7 @@ public class LightUpLimelight extends CommandBase {
   /**
    * Creates a new LightUpLimelight.
    */
+  private LimeLight l = new LimeLight();
   public LightUpLimelight() {
     //addRequirements(l);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -22,7 +23,7 @@ public class LightUpLimelight extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    LimeLight.operatorAlign = true;
+    l.operatorAlign = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,7 +34,7 @@ public class LightUpLimelight extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    LimeLight.operatorAlign = false;
+    l.operatorAlign = false;
   }
 
   // Returns true when the command should end.

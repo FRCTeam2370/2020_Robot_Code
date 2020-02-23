@@ -24,6 +24,6 @@ public class AutoShootReverse extends SequentialCommandGroup {
   public AutoShootReverse(Shooter s, Magazine m, Indexer i, LimeLight l, DriveTrain d) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());super();
-    super(/*new AlignAndShoot(s, m, i, l).withTimeout(6) ,new AutoDrivePID(-90000, d)*/);
+    super(new AlignAndShoot(s, m, i, l).withTimeout(6) ,new AutoDrivePID(-90000, d).withTimeout(2));
   }
 }

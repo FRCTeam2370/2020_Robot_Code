@@ -64,6 +64,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
+    SmartDashboard.putString("Selected Command", RobotContainer.autoChooser.getSelected().getName());
   }
 
   /**
@@ -71,8 +72,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+<<<<<<< Updated upstream
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     m_resetCommand = m_robotContainer.m_reset;
+=======
+    m_autonomousCommand = RobotContainer.autoChooser.getSelected();
+>>>>>>> Stashed changes
     // schedule the autonomous command (example)
     if(m_resetCommand != null) {
       m_resetCommand.schedule();

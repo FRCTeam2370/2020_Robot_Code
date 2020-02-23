@@ -26,7 +26,7 @@ public class AutoShootLoadPos3 extends SequentialCommandGroup {
   public AutoShootLoadPos3(Shooter s, Magazine m, Indexer i,LimeLight l, DriveTrain d, Intake in, IntakeArm ia) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new ResetEncoders(d), new AlignAndShoot(s, m, i, l).withTimeout(4),new AutoTurnPID(138, d),new IntakeAndDrive(in, ia, 185000, d), new IntakeArmAuto(in, ia)); 
+    super(new ResetEncoders(d), new AlignAndShoot(s, m, i, l).withTimeout(4),new AutoTurnPID(138, d),new IntakeAndDrive(in, ia, 200000, d), new IntakeArmAuto(in, ia)); 
   }
 }
 

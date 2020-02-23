@@ -65,7 +65,7 @@ public class LimeLight extends SubsystemBase {
     return x;
   }
 
-  public static double getBallYOffset() {
+ public static double getBallYOffset() {
     double y =  ty.getDouble(0.0);
     return y;
   }
@@ -112,6 +112,15 @@ public class LimeLight extends SubsystemBase {
     startingAngle = getLimelightYOffset() + limelightAngle;
     totalTangent = Math.tan(Math.toRadians(startingAngle));
     
+<<<<<<< Updated upstream
+=======
+    if(RobotState.isAutonomous() && !RobotState.isDisabled() || RobotContainer.RB.get() || RobotContainer.X.get()){
+      operatorAlign = true;
+    } else{
+      operatorAlign = false;
+    }
+
+>>>>>>> Stashed changes
     setCameraMode();
     sendToDashboard();
     // This method will be called once per scheduler run

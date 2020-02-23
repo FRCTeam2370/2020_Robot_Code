@@ -15,12 +15,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AlignAndShoot;
-import frc.robot.commands.AllShoot;
 import frc.robot.commands.AutoDrivePID;
 import frc.robot.commands.AutoShootLoadPos1;
 import frc.robot.commands.AutoShootLoadPos3;
 import frc.robot.commands.AutoShootReverse;
 import frc.robot.commands.Climb;
+import frc.robot.commands.ClimberToNextSetpoint;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.IntakeArmAuto;
 import frc.robot.commands.LoadBallUp;
@@ -205,6 +205,7 @@ public class RobotContainer {
     m_magazine.setDefaultCommand(new MagazineUp(m_magazine));
     m_climber.setDefaultCommand(new Climb(m_climber));
     m_leds.setDefaultCommand(new SetLEDs(m_leds));
+    m_climber.setDefaultCommand(new ClimberToNextSetpoint(m_climber));
     //m_Shooter.setDefaultCommand(new BaseSpeedAdjust(m_Shooter));
     //m_limelight.setDefaultCommand(new LimelightDistance(m_limelight));
     B.whileHeld(new LoadBallUp(m_indexer,m_magazine));
@@ -213,6 +214,7 @@ public class RobotContainer {
     X.whileHeld(new TurnWithLimelight(m_limelight));
     RB.whileHeld(new ShootAndIntake(m_Shooter,m_magazine,m_indexer,m_intake,m_intakearm, m_limelight));
     LB.whileHeld(new IntakeArmAuto(m_intake, m_intakearm));
+    ClimbA.whenPressed(new ClimberToNextSetpoint(m_climber));
     Select.toggleWhenPressed(new ToggleManualControl());
   }
 

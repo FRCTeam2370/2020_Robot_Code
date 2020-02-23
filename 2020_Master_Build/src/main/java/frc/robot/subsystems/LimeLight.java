@@ -21,6 +21,9 @@ public class LimeLight extends SubsystemBase {
 
   }
   public static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+  public static NetworkTable BallTable = NetworkTableInstance.getDefault().getTable("limelight-ballcam");
+  public static NetworkTableEntry Balltx = BallTable.getEntry("tx");
+  public static NetworkTableEntry Ballty = BallTable.getEntry("ty");
   public static NetworkTableEntry tx = table.getEntry("tx");
   public static NetworkTableEntry ty = table.getEntry("ty");
   public NetworkTableEntry ta = table.getEntry("ta");
@@ -57,6 +60,16 @@ public class LimeLight extends SubsystemBase {
     return a;
   }
 
+  public static double getBallXOffset() {
+    double x = tx.getDouble(0.0);
+    return x;
+  }
+
+  public static double getBallYOffset() {
+    double y =  ty.getDouble(0.0);
+    return y;
+  }
+
   public boolean getOperatorAllign() {
     return operatorAlign;
   }
@@ -77,10 +90,11 @@ public class LimeLight extends SubsystemBase {
 
   public void setCameraMode() {
     if (operatorAlign == false) {
-      NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(1);
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(1);
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
     } else {
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(0);
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(0);
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     }
 

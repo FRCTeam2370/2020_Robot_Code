@@ -25,8 +25,10 @@ public static double kF = 0;//.0522
 public static double kP = 0;
 public static double kI = 0;
 public static double kD = 0;
-public static double TopPoint = 4000;
 public static double BottomPoint = 0;
+public static double TopPoint = 4000;
+public static double ClimbedPoint = 8000;
+public static int WhatPoint = 0;
 public static boolean climbing = false;
 
 public static double getDifference(){

@@ -22,7 +22,7 @@ public class Magazine extends SubsystemBase {
 
   }
 
-  public static double magazineSpeed = -.5;
+  public static double magazineSpeed = -.7;
 
   public static WPI_TalonSRX magazineMotor = new WPI_TalonSRX(Constants.MagazineMotor);
 

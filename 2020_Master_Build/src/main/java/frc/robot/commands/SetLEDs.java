@@ -10,7 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.LEDs;
+import frc.robot.subsystems.LimeLight;
 
 public class SetLEDs extends CommandBase {
   /**
@@ -30,11 +32,11 @@ public class SetLEDs extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    boolean climbing = true;
-    boolean firing = true;
-    boolean targeting = true;
-    int getHighestSlot = 0;
-	if(climbing){
+    //boolean climbing = RobotContainer.getClimbRyAxis() != 0 || RobotContainer.getClimbBothTrigger() !=0;
+    //boolean firing = RobotContainer.RB.get();
+    //boolean targeting = LimeLight.operatorAlign;
+    //int getHighestSlot = 0;
+	/*if(climbing){
       LEDs.setAll(227, 157, 18);
     } else if(Timer.getMatchTime()<15 && RobotState.isOperatorControl()){
       LEDs.setAll(255, 0, 0);
@@ -51,10 +53,14 @@ public class SetLEDs extends CommandBase {
     else if (targeting){
       LEDs.setAll(255, 0, 255);
     }
-    else {
-      LEDs.Setsegment(getHighestSlot, 0, 0, 255);
-      LEDs.SetsegmentFromTop(getHighestSlot, 0, 255, 0);
-    }
+    else {*/
+      //if(RobotContainer.ClimbA.get()){
+      LEDs.setAll(0, 0, 255);
+      //}else{
+      //LEDs.SweepAll(0, 0, 255,5);
+      //}
+      //LEDs.SetsegmentFromTop(getHighestSlot, 0, 255, 0);
+    //}
     LEDs.ledLights.setData(LEDs.m_ledBuffer);
   }
 

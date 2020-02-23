@@ -14,8 +14,10 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class DriveTrain extends SubsystemBase {
   /**
@@ -76,19 +78,21 @@ public class DriveTrain extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("LYAxis", RobotContainer.getLyAxis());
+    SmartDashboard.putNumber("LXAxis", RobotContainer.getLxAxis());
     if(RobotState.isAutonomous()){
       left1.setNeutralMode(NeutralMode.Brake);
       left2.setNeutralMode(NeutralMode.Brake);
       right1.setNeutralMode(NeutralMode.Brake);
       right2.setNeutralMode(NeutralMode.Brake);
-      left1.configPeakOutputForward(.3);
-      left1.configPeakOutputReverse(-.3);
-      left2.configPeakOutputForward(.3);
-      left2.configPeakOutputReverse(-.3);
-      right1.configPeakOutputForward(.3);
-      right1.configPeakOutputReverse(-.3);
-      right2.configPeakOutputForward(.3);
-      right2.configPeakOutputReverse(-.3);
+      left1.configPeakOutputForward(.25);
+      left1.configPeakOutputReverse(-.25);
+      left2.configPeakOutputForward(.25);
+      left2.configPeakOutputReverse(-.25);
+      right1.configPeakOutputForward(.25);
+      right1.configPeakOutputReverse(-.25);
+      right2.configPeakOutputForward(.25);
+      right2.configPeakOutputReverse(-.25);
     } else{
       left1.configPeakOutputForward(1);
       left1.configPeakOutputReverse(-1);

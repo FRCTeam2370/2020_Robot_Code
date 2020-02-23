@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.AlignAndShoot;
 import frc.robot.commands.AllShoot;
 import frc.robot.commands.AutoDrivePID;
 import frc.robot.commands.AutoShootLoadPos1;
@@ -27,6 +28,7 @@ import frc.robot.commands.MagazineDown;
 import frc.robot.commands.MagazineUp;
 import frc.robot.commands.MoveIntakeArm;
 import frc.robot.commands.ResetEncoders;
+import frc.robot.commands.SetLEDs;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.ShootAndIntake;
 import frc.robot.commands.ToggleManualControl;
@@ -36,6 +38,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeArm;
+import frc.robot.subsystems.LEDs;
 import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
@@ -61,11 +64,12 @@ public class RobotContainer {
   private final Intake m_intake = new Intake();
   private final IntakeArm m_intakearm = new IntakeArm();
   private final Climber m_climber = new Climber();
+  private final LEDs m_leds = new LEDs();
   private AutoDrivePID autodrive = new AutoDrivePID(100000, m_DriveTrain);
   private AutoShootReverse ShootReverse = new AutoShootReverse(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain);
-  private AllShoot ShootItALL = new AllShoot(m_Shooter,m_magazine, m_indexer);
+  private AlignAndShoot ShootItALL = new AlignAndShoot(m_Shooter,m_magazine, m_indexer,m_limelight);
   private AutoShootLoadPos1 Position1 = new AutoShootLoadPos1(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain, m_intake, m_intakearm);
-  private AutoShootLoadPos3 Position3 = new AutoShootLoadPos3(m_Shooter, m_magazine, m_indexer, m_DriveTrain, m_intake, m_intakearm);
+  private AutoShootLoadPos3 Position3 = new AutoShootLoadPos3(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain, m_intake, m_intakearm);
 
   private SendableChooser<Command> autoChooser = new SendableChooser<Command>(); 
     public void addAutoOptions(){
@@ -90,6 +94,7 @@ public class RobotContainer {
   public static JoystickButton RB = new JoystickButton(stick, 6);
   public static JoystickButton Select = new JoystickButton(stick, 7);
   public static JoystickButton ClimbStart = new JoystickButton(climbStick, 8);
+  public static JoystickButton ClimbA = new JoystickButton(climbStick, 1);
   public static int getPOV(){
    return stick.getPOV();
   }
@@ -166,6 +171,12 @@ public class RobotContainer {
       return Math.abs(raw) < deadband ? 0.0 : (raw-deadband)/(1-deadband);
     }
 
+    public static double getClimbBothTrigger(){
+      double left = getClimbLeftTrigger();
+      double right = getClimbRightTrigger();
+      return right-left;
+    }
+
     public static double getBothTrigger(){
       double left = getLeftTrigger();
       double right = getRightTrigger();
@@ -193,6 +204,7 @@ public class RobotContainer {
     //ENABLE CLIMBER PLEASE >:-|
     m_magazine.setDefaultCommand(new MagazineUp(m_magazine));
     m_climber.setDefaultCommand(new Climb(m_climber));
+    m_leds.setDefaultCommand(new SetLEDs(m_leds));
     //m_Shooter.setDefaultCommand(new BaseSpeedAdjust(m_Shooter));
     //m_limelight.setDefaultCommand(new LimelightDistance(m_limelight));
     B.whileHeld(new LoadBallUp(m_indexer,m_magazine));

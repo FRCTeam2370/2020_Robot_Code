@@ -12,6 +12,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeArm;
+import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 
@@ -20,12 +21,12 @@ import frc.robot.subsystems.Shooter;
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class AutoShootLoadPos3 extends SequentialCommandGroup {
   /**
-   * Creates a new AutoShootLoadPos3.
+   * Creates a new AutoShootLoadPos1.
    */
-  public AutoShootLoadPos3(Shooter s, Magazine m, Indexer i, DriveTrain d, Intake in, IntakeArm ia) {
+  public AutoShootLoadPos3(Shooter s, Magazine m, Indexer i,LimeLight l, DriveTrain d, Intake in, IntakeArm ia) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    //Set drive param!
-     super(/*new AlignAndShoot(s, m, i).withTimeout(4),*/new AutoTurnPID(160, d),/* new DoTheIntakeThingRealGood(in, ia)*/ new AutoDrivePID(150000, d)); 
+    super(new ResetEncoders(d), new AlignAndShoot(s, m, i, l).withTimeout(4),new AutoTurnPID(138, d),new IntakeAndDrive(in, ia, 185000, d, m), new IntakeArmAuto(in, ia)); 
   }
 }
+

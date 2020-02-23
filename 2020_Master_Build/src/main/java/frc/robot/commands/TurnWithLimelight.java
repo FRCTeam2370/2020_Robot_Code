@@ -22,7 +22,7 @@ public class TurnWithLimelight extends PIDCommand {
   public TurnWithLimelight(LimeLight l) {
     super(  
         // The controller that the command will use
-        new PIDController(0.000005, 0.03, 0),
+        new PIDController(0.04, 0.03, 0),
         // This should return the measurement
         () -> LimeLight.getLimelightXOffset(),
         // This should return the setpoint (can also be a constant)
@@ -38,14 +38,18 @@ public class TurnWithLimelight extends PIDCommand {
     // Configure additional PID options by calling `getController` here.
   }
 
+  public void initialize() {
+    LimeLight.operatorAlign = true;
+  }
+
   @Override
   public void end(boolean interrupted) {
-    //LimeLight.operatorAlign = false;
+    LimeLight.operatorAlign = false;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return getController().atSetpoint();
+    return false;
   }
 }

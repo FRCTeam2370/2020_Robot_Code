@@ -7,18 +7,13 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Indexer;
-import frc.robot.subsystems.Magazine;
 
-public class MagazineUp extends CommandBase {
+public class ClimberToNextSetpoint extends CommandBase {
   /**
-   * Creates a new MagazineUp.
+   * Creates a new ClimberToNextSetpoint.
    */
-  public MagazineUp(Magazine mag) {
-    addRequirements(mag);
+  public ClimberToNextSetpoint() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -30,22 +25,11 @@ public class MagazineUp extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(!Magazine.IsBallOnTop()){
-    if(Indexer.IsBallInPan()){
-    Magazine.magazineMotor.set(ControlMode.PercentOutput, -0.4);
-    } else{
-    Magazine.magazineMotor.set(ControlMode.PercentOutput, 0);
-    }
-  } else{
-    Magazine.magazineMotor.set(ControlMode.PercentOutput, 0);
   }
-}
-
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Magazine.magazineMotor.stopMotor();
   }
 
   // Returns true when the command should end.

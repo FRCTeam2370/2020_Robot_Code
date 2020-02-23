@@ -41,10 +41,10 @@ public class IntakeArm extends SubsystemBase {
     //if(IntakeArmMotor.getSensorCollection().getQuadraturePosition() < 0){
     //  IntakeArmMotor.getSensorCollection().setQuadraturePosition(IntakeArmMotor.getSensorCollection().getQuadraturePosition() * -1, 10);
     //}
-    if(LimitSwitch.get()){
+    if(!LimitSwitch.get()){
     IntakeArm.IntakeArmMotor.getSensorCollection().setQuadraturePosition(0, 10);
   }
-  SmartDashboard.putBoolean("limit switch",LimitSwitch.get());
+  SmartDashboard.putBoolean("limit switch",!LimitSwitch.get());
   SmartDashboard.putNumber("ArmPosition",IntakeArmMotor.getSensorCollection().getQuadraturePosition());
   SmartDashboard.putNumber("Arm Current", IntakeArmMotor.getSupplyCurrent());
   SmartDashboard.putNumber("Pan Sensor",Indexer.PanSensor.getValue());

@@ -7,23 +7,22 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Indexer;
-import frc.robot.subsystems.LimeLight;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeArm;
 import frc.robot.subsystems.Magazine;
-import frc.robot.subsystems.Shooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AutoShootReverse extends SequentialCommandGroup {
+public class IntakeAndDrive extends ParallelRaceGroup {
   /**
-   * Creates a new AutoReverse.
+   * Creates a new IntakeAndDrive.
    */
-  public AutoShootReverse(Shooter s, Magazine m, Indexer i, LimeLight l, DriveTrain d) {
+  public IntakeAndDrive(Intake in, IntakeArm ia,double setpoint, DriveTrain d, Magazine m) {
     // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());super();
-    super(new AlignAndShoot(s, m, i, l).withTimeout(6) ,new AutoDrivePID(-90000, d));
+    // super(new FooCommand(), new BarCommand());
+    super(new MagazineUp(m), new IntakeArmAuto(in, ia),new AutoDrivePID(setpoint, d));
   }
 }

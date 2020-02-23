@@ -36,8 +36,8 @@ public class Shooter extends SubsystemBase {
   public static double kD = 0.15;
   public static double speed = 2485;
   //don't touch these (\/) unless you know what you are doing
-  public static double StartingBaseSpeed = 1380;
-  public static double BaseSpeed = 1380;
+  public static double StartingBaseSpeed = 1400;
+  public static double BaseSpeed = 1400;
   public static double scaling = 1.25;
   private boolean isSet;
 
@@ -78,7 +78,7 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
     //if(!ManualToggle){
     speed =Math.min(BaseSpeed * Math.pow(m_limelight.distanceToTarget(), 0.0525) + 0.5 * Math.pow(m_limelight.distanceToTarget(), scaling), 6100); // 6303 + (-95.8 * m_limelight.distanceToTarget()) + (0.8 * Math.pow(m_limelight.distanceToTarget(), 2)) + (-0.0028 * Math.pow(m_limelight.distanceToTarget(), 3)) + (0.00000354 * Math.pow(m_limelight.distanceToTarget(), 4));
-    //} else{
+    //==} else{
     //speed = 3000 * RobotContainer.getRightTrigger();
     //}
     if(RobotContainer.getPOV() == 0 && !isSet){

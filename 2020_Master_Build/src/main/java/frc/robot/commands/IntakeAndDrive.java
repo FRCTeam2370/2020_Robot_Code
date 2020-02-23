@@ -23,6 +23,6 @@ public class IntakeAndDrive extends ParallelRaceGroup {
   public IntakeAndDrive(Intake in, IntakeArm ia,double setpoint, DriveTrain d, Magazine m) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new MagazineUp(m), new IntakeArmAuto(in, ia),new AutoDrivePID(setpoint, d));
+    super(new IntakeArmAuto(in, ia),new AutoDrivePID(setpoint, d));
   }
 }

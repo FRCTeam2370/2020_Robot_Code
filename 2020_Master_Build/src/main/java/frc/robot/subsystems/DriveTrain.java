@@ -80,6 +80,7 @@ public class DriveTrain extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("LYAxis", RobotContainer.getLyAxis());
     SmartDashboard.putNumber("LXAxis", RobotContainer.getLxAxis());
+    
     if(RobotState.isAutonomous()){
       left1.setNeutralMode(NeutralMode.Brake);
       left2.setNeutralMode(NeutralMode.Brake);

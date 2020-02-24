@@ -71,11 +71,7 @@ public class RobotContainer {
   private AutoShootLoadPos1 Position1 = new AutoShootLoadPos1(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain, m_intake, m_intakearm);
   private AutoShootLoadPos3 Position3 = new AutoShootLoadPos3(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain, m_intake, m_intakearm);
 
-<<<<<<< Updated upstream
-  private SendableChooser<Command> autoChooser = new SendableChooser<Command>(); 
-=======
   public static SendableChooser<Command> autoChooser = new SendableChooser<>();
->>>>>>> Stashed changes
     public void addAutoOptions(){
     autoChooser.setDefaultOption("Go Straight", autodrive);
     autoChooser.addOption("Turn, Shoot, and Reverse", ShootReverse);
@@ -99,6 +95,7 @@ public class RobotContainer {
   public static JoystickButton Select = new JoystickButton(stick, 7);
   public static JoystickButton ClimbStart = new JoystickButton(climbStick, 8);
   public static JoystickButton ClimbA = new JoystickButton(climbStick, 1);
+  public static JoystickButton ClimbB = new JoystickButton(climbStick, 2);
   public static int getPOV(){
    return stick.getPOV();
   }

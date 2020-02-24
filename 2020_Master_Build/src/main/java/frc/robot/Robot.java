@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -72,12 +73,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-<<<<<<< Updated upstream
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    m_resetCommand = m_robotContainer.m_reset;
-=======
     m_autonomousCommand = RobotContainer.autoChooser.getSelected();
->>>>>>> Stashed changes
     // schedule the autonomous command (example)
     if(m_resetCommand != null) {
       m_resetCommand.schedule();

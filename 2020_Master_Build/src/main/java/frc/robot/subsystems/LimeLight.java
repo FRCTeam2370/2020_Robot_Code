@@ -10,8 +10,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 
 public class LimeLight extends SubsystemBase {
   /**
@@ -112,15 +114,12 @@ public class LimeLight extends SubsystemBase {
     startingAngle = getLimelightYOffset() + limelightAngle;
     totalTangent = Math.tan(Math.toRadians(startingAngle));
     
-<<<<<<< Updated upstream
-=======
     if(RobotState.isAutonomous() && !RobotState.isDisabled() || RobotContainer.RB.get() || RobotContainer.X.get()){
       operatorAlign = true;
     } else{
       operatorAlign = false;
     }
 
->>>>>>> Stashed changes
     setCameraMode();
     sendToDashboard();
     // This method will be called once per scheduler run

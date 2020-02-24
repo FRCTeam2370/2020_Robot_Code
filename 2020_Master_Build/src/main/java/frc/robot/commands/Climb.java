@@ -55,6 +55,9 @@ public class Climb extends CommandBase {
     Climber.setMotorsNoPID(RobotContainer.getClimbRyAxis());
     }
   }
+  if(RobotContainer.ClimbB.get()){
+    Climber.ResetEncoders();
+  }
 }
 
 

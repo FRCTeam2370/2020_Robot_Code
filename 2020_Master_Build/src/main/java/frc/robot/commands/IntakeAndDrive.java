@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeArm;
-import frc.robot.subsystems.Magazine;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:

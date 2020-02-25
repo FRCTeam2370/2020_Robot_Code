@@ -26,8 +26,8 @@ public static double kP = 0;
 public static double kI = 0;
 public static double kD = 0;
 public static double BottomPoint = 0;
-public static double TopPoint = 4000;
-public static double ClimbedPoint = 8000;
+public static double TopPoint = 150000;
+public static double ClimbedPoint = 300000;
 public static int WhatPoint = 0;
 public static boolean climbing = false;
 
@@ -42,6 +42,11 @@ public static void ResetEncoders(){
   ClimbMotorRight.getSensorCollection().setQuadraturePosition(0, timeout);
 }
 
+public static double ReadEncoders(){
+  return ClimbMotorLeft.getSensorCollection().getQuadraturePosition();
+  //ClimbMotorRight.getSensorCollection().getQuadraturePosition();
+
+}
 
 public static void configPID(){
   //Configure Motor 1

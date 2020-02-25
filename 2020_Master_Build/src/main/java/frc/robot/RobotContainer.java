@@ -20,6 +20,7 @@ import frc.robot.commands.AutoShootLoadPos1;
 import frc.robot.commands.AutoShootLoadPos3;
 import frc.robot.commands.AutoShootReverse;
 import frc.robot.commands.Climb;
+import frc.robot.commands.ClimberToNextSetpoint;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.IntakeArmAuto;
 import frc.robot.commands.LoadBallUp;
@@ -214,7 +215,7 @@ public class RobotContainer {
     X.whileHeld(new TurnWithLimelight(m_limelight));
     RB.whileHeld(new ShootAndIntake(m_Shooter,m_magazine,m_indexer,m_intake,m_intakearm, m_limelight));
     LB.toggleWhenPressed(new IntakeArmAuto(m_intake, m_intakearm));
-    //ClimbA.whenPressed(new ClimberToNextSetpoint(m_climber));
+    ClimbA.whenPressed(new ClimberToNextSetpoint(m_climber));
     Select.whenPressed(new ToggleManualControl());
   }
 

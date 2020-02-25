@@ -21,7 +21,13 @@ public class ToggleManualControl extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Shooter.ManualToggle = !Shooter.ManualToggle;
+    if(Shooter.ManualToggle == "none"){
+      Shooter.ManualToggle = "LimeLight";
+    } else if(Shooter.ManualToggle == "LimeLight"){
+      Shooter.ManualToggle = "intake";
+    } else if(Shooter.ManualToggle == "intake"){
+      Shooter.ManualToggle = "none";
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.

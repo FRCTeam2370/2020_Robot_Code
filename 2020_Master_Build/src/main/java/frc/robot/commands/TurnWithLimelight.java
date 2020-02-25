@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimeLight;
+import frc.robot.subsystems.Shooter;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -44,7 +45,7 @@ public class TurnWithLimelight extends PIDCommand {
 
   @Override
   public void end(boolean interrupted) {
-    LimeLight.operatorAlign = false;
+    LimeLight.operatorAlign = false || Shooter.ManualToggle == "LimeLight";
   }
 
   // Returns true when the command should end.

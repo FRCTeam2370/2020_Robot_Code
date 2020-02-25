@@ -32,7 +32,7 @@ public class MoveIntakeArm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Shooter.ManualToggle){
+    if(Shooter.ManualToggle == "intake"){
     Intake.intakeMotor.set(ControlMode.PercentOutput, -RobotContainer.getLeftTrigger());
     IntakeArm.IntakeArmMotor.configForwardSoftLimitEnable(false);
     IntakeArm.IntakeArmMotor.configReverseSoftLimitEnable(false);

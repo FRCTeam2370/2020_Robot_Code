@@ -27,7 +27,7 @@ public class Shooter extends SubsystemBase {
   public static WPI_TalonFX shooterMotor = new WPI_TalonFX(Constants.shooterMotor1);
   //public static WPI_TalonFX shooterMotor2 = new WPI_TalonFX(Constants.shooterMotor2);
   public static AnalogInput ShooterSensor = new AnalogInput(3);
-  public static boolean ManualToggle = false;
+  public static String ManualToggle = "none";
   private static int timeout = 30;
   private static int slotIdx = 0;
   public static double kF = .0522;//.0522
@@ -93,7 +93,7 @@ public class Shooter extends SubsystemBase {
       isSet = false;
     }
   
-    SmartDashboard.putBoolean("ManualMode", ManualToggle);
+    SmartDashboard.putString("ManualMode", ManualToggle);
     SmartDashboard.putNumber("Speed", speed);
     SmartDashboard.putNumber("Original Base Speed", StartingBaseSpeed);
     SmartDashboard.putNumber("Current Base Speed", BaseSpeed);

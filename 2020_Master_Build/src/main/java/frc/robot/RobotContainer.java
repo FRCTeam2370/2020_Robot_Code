@@ -20,7 +20,6 @@ import frc.robot.commands.AutoShootLoadPos1;
 import frc.robot.commands.AutoShootLoadPos3;
 import frc.robot.commands.AutoShootReverse;
 import frc.robot.commands.Climb;
-import frc.robot.commands.ClimberToNextSetpoint;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.IntakeArmAuto;
 import frc.robot.commands.LoadBallUp;
@@ -78,7 +77,7 @@ public class RobotContainer {
     autoChooser.addOption("Turn and Shoot", ShootItALL);
     autoChooser.addOption("Turn, Shoot, and Load (Position 1)", Position1);
     autoChooser.addOption("Turn, Shoot, and Load (Position 3)", Position3);
-    SmartDashboard.putData(autoChooser);
+    SmartDashboard.putData("auto", autoChooser);
   }
 
   //private final DriveWithJoystick m_autoCommand = new DriveWithJoystick(m_DriveTrain);
@@ -206,7 +205,7 @@ public class RobotContainer {
     m_magazine.setDefaultCommand(new MagazineUp(m_magazine));
     m_climber.setDefaultCommand(new Climb(m_climber));
     m_leds.setDefaultCommand(new SetLEDs(m_leds));
-    m_climber.setDefaultCommand(new ClimberToNextSetpoint(m_climber));
+    //m_climber.setDefaultCommand(new ClimberToNextSetpoint(m_climber));
     //m_Shooter.setDefaultCommand(new BaseSpeedAdjust(m_Shooter));
     //m_limelight.setDefaultCommand(new LimelightDistance(m_limelight));
     B.whileHeld(new LoadBallUp(m_indexer,m_magazine));
@@ -214,8 +213,8 @@ public class RobotContainer {
     A.whileHeld(new Shoot(m_Shooter));
     X.whileHeld(new TurnWithLimelight(m_limelight));
     RB.whileHeld(new ShootAndIntake(m_Shooter,m_magazine,m_indexer,m_intake,m_intakearm, m_limelight));
-    LB.whileHeld(new IntakeArmAuto(m_intake, m_intakearm));
-    ClimbA.whenPressed(new ClimberToNextSetpoint(m_climber));
+    LB.toggleWhenPressed(new IntakeArmAuto(m_intake, m_intakearm));
+    //ClimbA.whenPressed(new ClimberToNextSetpoint(m_climber));
     Select.toggleWhenPressed(new ToggleManualControl());
   }
 

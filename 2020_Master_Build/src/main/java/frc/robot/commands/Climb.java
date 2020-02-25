@@ -52,12 +52,13 @@ public class Climb extends CommandBase {
     Climber.ClimbMotorLeft.set(ControlMode.PercentOutput, RobotContainer.getClimbLeftTrigger() * inverted);
     Climber.ClimbMotorRight.set(ControlMode.PercentOutput, RobotContainer.getClimbRightTrigger() * inverted);
     } else{
+      SmartDashboard.putNumber("ClimbRYAxis", RobotContainer.getClimbRyAxis());
     Climber.setMotorsNoPID(RobotContainer.getClimbRyAxis());
     }
   }
-  if(RobotContainer.ClimbB.get()){
-    Climber.ResetEncoders();
-  }
+  //if(RobotContainer.ClimbB.get()){
+  //  Climber.ResetEncoders();
+  //}
 }
 
 

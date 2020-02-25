@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeArm;
 import frc.robot.subsystems.Shooter;
 
@@ -32,6 +33,7 @@ public class MoveIntakeArm extends CommandBase {
   @Override
   public void execute() {
     if(Shooter.ManualToggle){
+    Intake.intakeMotor.set(ControlMode.PercentOutput, -RobotContainer.getLeftTrigger());
     IntakeArm.IntakeArmMotor.configForwardSoftLimitEnable(false);
     IntakeArm.IntakeArmMotor.configReverseSoftLimitEnable(false);
     IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, RobotContainer.getRyAxis());

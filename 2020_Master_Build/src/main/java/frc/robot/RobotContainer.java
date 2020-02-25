@@ -215,7 +215,7 @@ public class RobotContainer {
     RB.whileHeld(new ShootAndIntake(m_Shooter,m_magazine,m_indexer,m_intake,m_intakearm, m_limelight));
     LB.toggleWhenPressed(new IntakeArmAuto(m_intake, m_intakearm));
     //ClimbA.whenPressed(new ClimberToNextSetpoint(m_climber));
-    Select.toggleWhenPressed(new ToggleManualControl());
+    Select.whenPressed(new ToggleManualControl());
   }
 
 

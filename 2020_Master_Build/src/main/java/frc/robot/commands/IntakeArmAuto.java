@@ -10,7 +10,6 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeArm;

@@ -45,12 +45,12 @@ public class TurnWithLimelight extends PIDCommand {
 
   @Override
   public void end(boolean interrupted) {
-    LimeLight.operatorAlign = false || Shooter.ManualToggle == "LimeLight";
+    
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return LimeLight.operatorAlign = false || Shooter.ManualToggle == "LimeLight";
   }
 }

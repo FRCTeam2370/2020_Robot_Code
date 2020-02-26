@@ -16,7 +16,7 @@ public class LEDs extends SubsystemBase {
   /**
    * Creates a new LEDs.
    */
-  public static AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(42);
+  public static AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(102);
   public static AddressableLED ledLights = new AddressableLED(0);
   public static boolean Shooting = false;
   public LEDs() {
@@ -31,7 +31,7 @@ public class LEDs extends SubsystemBase {
 
 
   public static int getLength(){
-    int raw = 42;
+    int raw = 102;
     return raw;
   }
 
@@ -47,22 +47,22 @@ public class LEDs extends SubsystemBase {
 
   public static void setBothSides(int index, int r, int g, int b){
     m_ledBuffer.setRGB(index, r, g, b);
-    //m_ledBuffer.setRGB(getLength()-index-1, r, g, b);
+    m_ledBuffer.setRGB(getLength()-index-1, r, g, b);
   }
 
 
   public static void setAll(int Red,int Green,int Blue){
-    for(var i = 0; i<42; i++){
+    for(var i = 0; i<51; i++){
       setBothSides(i, Red, Green, Blue);
     }
     activate();
   }
 
   public static void SweepAll(int Red,int Green,int Blue,double Delay){
-    for(var i = 0; i<42; i++){
-      m_ledBuffer.setRGB(i, Red, Green, Blue);
+    for(var i = 0; i<51; i++){
+      setBothSides(i, Red, Green, Blue);
       activate();
-      Timer.delay(Delay/(42));
+      Timer.delay(Delay/(51));
     
     }
     

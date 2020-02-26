@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.LEDs;
 import frc.robot.subsystems.LimeLight;
-import frc.robot.subsystems.Shooter;
 
 public class SetLEDs extends CommandBase {
   /**

@@ -10,6 +10,7 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.LEDs;
 //import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 
@@ -34,6 +35,7 @@ public class Shoot extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    LEDs.Shooting = true;
     
   }
 
@@ -50,6 +52,7 @@ public class Shoot extends CommandBase {
   public void end(boolean interrupted) {
     Shooter.shooterMotor.set(ControlMode.Velocity, 0);
     //Shooter.shooterMotor2.set(ControlMode.Velocity, 0);
+    LEDs.Shooting = false;
     }
 
   // Returns true when the command should end.

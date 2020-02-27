@@ -34,7 +34,7 @@ public class Indexer extends SubsystemBase {
   public static boolean IsBallInPan(){
     double raw = PanSensor.getValue();
     boolean status;
-    if(raw > 1200){
+    if(raw > 1400){
       status = true;
     } else{
       status = false;

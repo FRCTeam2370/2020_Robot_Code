@@ -38,7 +38,7 @@ public class IntakeArmAuto extends CommandBase {
     IntakeArm.IntakeArmMotor.configReverseSoftLimitEnable(true);
     IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, IntakeArm.speed);
     }
-    Indexer.IndexerMotor.set(ControlMode.PercentOutput, Indexer.indexerSpeed);
+    //Indexer.IndexerMotor.set(ControlMode.PercentOutput, Indexer.indexerSpeed);
   }
 
   // Called once the command ends or is interrupted.
@@ -48,7 +48,7 @@ public class IntakeArmAuto extends CommandBase {
     if(!(Shooter.ManualToggle == "LimeLight")){
     IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, -IntakeArm.speed);
     }
-    Indexer.IndexerMotor.set(ControlMode.PercentOutput, 0);
+    //Indexer.IndexerMotor.set(ControlMode.PercentOutput, 0);
   }
 
   // Returns true when the command should end.

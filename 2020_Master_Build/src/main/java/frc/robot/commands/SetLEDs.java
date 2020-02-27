@@ -39,19 +39,16 @@ public class SetLEDs extends CommandBase {
 	if(climbing){
       LEDs.setAll(150, 90, 0);
     } else if(Timer.getMatchTime()<15 && RobotState.isOperatorControl()){
-      LEDs.setAll(255, 0, 0);
-      Timer.delay(0.5);
-      LEDs.setAll(255, 255, 255);
-      Timer.delay(0.5);
-    }
-    else if (Timer.getMatchTime()<30 && RobotState.isOperatorControl()){
+      LEDs.setAll(0, 100, 0);
+      //Timer.delay(0.25);
+      //LEDs.setAll(100, 100, 100);
+      //Timer.delay(0.25);
+    } else if (Timer.getMatchTime()<30 && RobotState.isOperatorControl()){
       LEDs.setAll(200, 0, 0);
-    }
-    else if (firing){
+    } else if (firing){
       LEDs.setAll(0, 0, 100);
       LEDs.SweepAll(0, 100, 0, 1);
-    }
-    else if (targeting){
+    } else if (targeting){
       LEDs.setAll(255, 0, 255);
     } else{
       LEDs.setAll(0, 100, 0);

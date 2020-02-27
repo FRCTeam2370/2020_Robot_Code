@@ -93,11 +93,9 @@ public class LimeLight extends SubsystemBase {
 
   public void setCameraMode() {
     if (operatorAlign == false) {
-      Timer.delay(0.01);
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(0);
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
     } else {
-      Timer.delay(0.01);
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(1);
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     }

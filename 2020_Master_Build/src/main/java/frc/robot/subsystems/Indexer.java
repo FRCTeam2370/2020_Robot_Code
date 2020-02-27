@@ -7,9 +7,11 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -17,13 +19,15 @@ public class Indexer extends SubsystemBase {
   /**
    * Creates a new Indexer.
    */
-  public Indexer() {
-
+  public static WPI_TalonSRX IndexerMotor = new WPI_TalonSRX(Constants.IndexerMotor);
+  public static SupplyCurrentLimitConfiguration IndexerLimit = new SupplyCurrentLimitConfiguration(true, 3, 0.1, 0);
+   public Indexer() {
+    IndexerMotor.configSupplyCurrentLimit(IndexerLimit);
   }
 
   public static double indexerSpeed = .8;
 
-  public static WPI_TalonSRX IndexerMotor = new WPI_TalonSRX(Constants.IndexerMotor);
+  
 
   public static AnalogInput PanSensor = new AnalogInput(1);
 
@@ -40,6 +44,7 @@ public class Indexer extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Indexer Current", IndexerMotor.getSupplyCurrent());
     // This method will be called once per scheduler run
   }
 }

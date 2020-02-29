@@ -111,6 +111,12 @@ public class LimeLight extends SubsystemBase {
 
   @Override
   public void periodic() {
+    if(LimeLight.operatorAlign){
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(1);
+    } else{
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(0);
+    }
+
     startingAngle = getLimelightYOffset() + limelightAngle;
     totalTangent = Math.tan(Math.toRadians(startingAngle));
     

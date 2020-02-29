@@ -27,6 +27,7 @@ import frc.robot.commands.IndexerOut;
 import frc.robot.commands.IntakeArmAuto;
 import frc.robot.commands.MagazineDown;
 import frc.robot.commands.MagazineUp;
+import frc.robot.commands.MagazineUpShoot;
 import frc.robot.commands.MoveIntakeArm;
 import frc.robot.commands.ResetEncoders;
 import frc.robot.commands.SetLEDs;
@@ -210,7 +211,7 @@ public class RobotContainer {
     //m_climber.setDefaultCommand(new ClimberToNextSetpoint(m_climber));
     //m_Shooter.setDefaultCommand(new BaseSpeedAdjust(m_Shooter));
     //m_limelight.setDefaultCommand(new LimelightDistance(m_limelight));
-    B.whileHeld(new IndexerOut(m_indexer));
+    B.whileHeld(new MagazineUpShoot(m_magazine));
     Y.whileHeld(new MagazineDown(m_magazine));
     A.whileHeld(new Shoot(m_Shooter));
     X.whileHeld(new TurnWithLimelight(m_limelight));
@@ -218,6 +219,7 @@ public class RobotContainer {
     LB.toggleWhenPressed(new IntakeArmAuto(m_intake, m_intakearm));
     ClimbA.whenPressed(new ClimberToNextSetpoint(m_climber));
     Select.whenPressed(new ToggleManualControl());
+
   }
 
 

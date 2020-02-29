@@ -33,7 +33,7 @@ public class SetLEDs extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Math.IEEEremainder(Timer.getMatchTime(), 2) == 0){
+    if(Math.IEEEremainder(Math.round(Timer.getMatchTime()), 2) == 0){
       Flash = false;
     } else{
       Flash = true;
@@ -46,16 +46,16 @@ public class SetLEDs extends CommandBase {
       LEDs.setAll(150, 90, 0);
     } else if(Timer.getMatchTime()<15 && RobotState.isOperatorControl()){
       if(Flash){
-      LEDs.setAll(0, 100, 0);
+      LEDs.setAll(150, 0, 0);
       } else{
-        LEDs.setAll(100, 100, 100);
+        LEDs.setAll(150, 150, 150);
       }
     } else if (Timer.getMatchTime()<30 && RobotState.isOperatorControl()){
-      LEDs.setAll(200, 0, 0);
+      LEDs.setAll(100, 0, 0);
     } else if (firing){
       LEDs.setAll(0, 0, 100);
     } else if (targeting){
-      LEDs.setAll(255, 0, 255);
+      LEDs.setAll(100, 0, 100);
     } else{
       LEDs.setAll(0, 100, 0);
     }

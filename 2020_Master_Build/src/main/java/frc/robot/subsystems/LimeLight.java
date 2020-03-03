@@ -95,11 +95,12 @@ public class LimeLight extends SubsystemBase {
     if (operatorAlign == false) {
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(0);
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
-    } else {
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(0);
+    } else {  
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(1);
       NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
+      NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(1);
     }
-
   }
   public void sendToDashboard(){
     SmartDashboard.putString("IsThisConnected", NetworkTableInstance.getDefault().getTable("limelight").getSubTables().toString()); 
@@ -111,17 +112,13 @@ public class LimeLight extends SubsystemBase {
 
   @Override
   public void periodic() {
-    if(LimeLight.operatorAlign){
-      NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(1);
-    } else{
-      NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(0);
-    }
 
     startingAngle = getLimelightYOffset() + limelightAngle;
     totalTangent = Math.tan(Math.toRadians(startingAngle));
     
     if(RobotState.isAutonomous() && !RobotState.isDisabled() || RobotContainer.RB.get() || RobotContainer.X.get()){
       operatorAlign = true;
+      
     } else{
       operatorAlign = false;
     }

@@ -31,7 +31,7 @@ public class Shooter extends SubsystemBase {
   private static int timeout = 30;
   private static int slotIdx = 0;
   public static double kF = .0522;//.0522
-  public static double kP = 0.01;
+  public static double kP = 0.005;
   public static double kI = 0.000005;//000005;
   public static double kD = 0.185;
   public static double speed = 2500;

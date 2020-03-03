@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
+import edu.wpi.first.wpiutil.math.MathUtil;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Shooter;
@@ -29,7 +30,7 @@ public class TurnWithLimelight extends PIDCommand {
         // This should return the setpoint (can also be a constant)
         () -> 0,
         // This uses the output
-        output -> {DriveTrain.arcadeDrive(0, output);
+        output -> {DriveTrain.arcadeDrive(0, MathUtil.clamp(output, -.30, .30));
           // Use the output here
         });
         LimeLight.operatorAlign = true;

@@ -11,8 +11,10 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -81,6 +83,18 @@ public class DriveTrain extends SubsystemBase {
     SmartDashboard.putNumber("LYAxis", RobotContainer.getLyAxis());
     SmartDashboard.putNumber("LXAxis", RobotContainer.getLxAxis());
     
+    if(Timer.getMatchTime() == 40 || Timer.getMatchTime() == 30 || Timer.getMatchTime() == 10 || Timer.getMatchTime() == 5){
+      RobotContainer.stick.setRumble(RumbleType.kLeftRumble, 1);
+      RobotContainer.stick.setRumble(RumbleType.kRightRumble, 1);
+      RobotContainer.climbStick.setRumble(RumbleType.kLeftRumble, 1);
+      RobotContainer.climbStick.setRumble(RumbleType.kRightRumble, 1);
+    } else{
+      RobotContainer.stick.setRumble(RumbleType.kLeftRumble, 0);
+      RobotContainer.stick.setRumble(RumbleType.kRightRumble, 0);
+      RobotContainer.climbStick.setRumble(RumbleType.kLeftRumble, 0);
+      RobotContainer.climbStick.setRumble(RumbleType.kRightRumble, 0);
+    }
+
     if(RobotState.isAutonomous()){
       left1.setNeutralMode(NeutralMode.Brake);
       left2.setNeutralMode(NeutralMode.Brake);

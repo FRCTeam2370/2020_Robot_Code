@@ -95,6 +95,7 @@ public class RobotContainer {
   public static JoystickButton LB = new JoystickButton(stick, 5);
   public static JoystickButton RB = new JoystickButton(stick, 6);
   public static JoystickButton Select = new JoystickButton(stick, 7);
+  public static JoystickButton ClimbSelect = new JoystickButton(climbStick, 7);
   public static JoystickButton ClimbStart = new JoystickButton(climbStick, 8);
   public static JoystickButton ClimbA = new JoystickButton(climbStick, 1);
   public static JoystickButton ClimbB = new JoystickButton(climbStick, 2);
@@ -218,7 +219,7 @@ public class RobotContainer {
     RB.whileHeld(new ShootAndIntake(m_Shooter,m_magazine,m_indexer,m_intake,m_intakearm, m_limelight));
     LB.toggleWhenPressed(new IntakeArmAuto(m_intake, m_intakearm));
     ClimbA.whenPressed(new ClimberToNextSetpoint(m_climber));
-    Select.whenPressed(new ToggleManualControl());
+    ClimbSelect.whenPressed(new ToggleManualControl());
 
   }
 

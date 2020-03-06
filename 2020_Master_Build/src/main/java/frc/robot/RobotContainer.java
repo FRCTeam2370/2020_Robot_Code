@@ -34,6 +34,7 @@ import frc.robot.commands.SetLEDs;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.ShootAndIntake;
 import frc.robot.commands.ToggleManualControl;
+import frc.robot.commands.TurnToPowerCell;
 import frc.robot.commands.TurnWithLimelight;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
@@ -213,7 +214,7 @@ public class RobotContainer {
     //m_Shooter.setDefaultCommand(new BaseSpeedAdjust(m_Shooter));
     //m_limelight.setDefaultCommand(new LimelightDistance(m_limelight));
     B.whileHeld(new MagazineUpShoot(m_magazine));
-    Y.whileHeld(new MagazineDown(m_magazine));
+    Y.whileHeld(new TurnToPowerCell(m_limelight));
     A.whileHeld(new Shoot(m_Shooter));
     X.whileHeld(new TurnWithLimelight(m_limelight));
     RB.whileHeld(new ShootAndIntake(m_Shooter,m_magazine,m_indexer,m_intake,m_intakearm, m_limelight));

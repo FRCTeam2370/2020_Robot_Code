@@ -28,9 +28,9 @@ public class TurnWithLimelight extends PIDCommand {
         // This should return the measurement
         () -> LimeLight.getLimelightXOffset(),
         // This should return the setpoint (can also be a constant)
-        () -> 0,
+        () -> -1,
         // This uses the output
-        output -> {DriveTrain.arcadeDrive(0, MathUtil.clamp(output, -.30, .30));
+        output -> {DriveTrain.arcadeDrive(0, MathUtil.clamp(output, -.40, .40));
           // Use the output here
         });
         LimeLight.operatorAlign = true;

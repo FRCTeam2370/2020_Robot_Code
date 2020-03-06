@@ -64,7 +64,7 @@ public class LimeLight extends SubsystemBase {
   }
 
   public static double getBallXOffset() {
-    double x = tx.getDouble(0.0);
+    double x = Balltx.getDouble(0.0);
     return x;
   }
 
@@ -106,6 +106,7 @@ public class LimeLight extends SubsystemBase {
     SmartDashboard.putString("IsThisConnected", NetworkTableInstance.getDefault().getTable("limelight").getSubTables().toString()); 
     SmartDashboard.putNumber("Limelight X", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0.0));
     SmartDashboard.putNumber("Limelight Y", getLimelightYOffset());
+    SmartDashboard.putNumber("Limelight Ball X", getBallXOffset());
     SmartDashboard.putBoolean("Operator Align", operatorAlign);
     //SmartDashboard.putNumber("Limelight A", getLimelightTargetArea());
   }

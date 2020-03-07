@@ -33,6 +33,7 @@ public class DriveWithJoystick extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    SmartDashboard.putNumber("getClimbyDriveyBoi", RobotContainer.getClimbyDriveyBoi());
     SmartDashboard.putNumber("angle", DriveTrain.ahrs.getPitch());
     if(RobotState.isOperatorControl()){
       SmartDashboard.putNumber("angle", DriveTrain.getYaw());
@@ -40,8 +41,8 @@ public class DriveWithJoystick extends CommandBase {
       DriveTrain.left2.setNeutralMode(NeutralMode.Coast);
       DriveTrain.right1.setNeutralMode(NeutralMode.Coast);
       DriveTrain.right2.setNeutralMode(NeutralMode.Coast);
-      if(RobotContainer.getLxAxis() ==0 && RobotContainer.getLyAxis() ==0){
-        DriveTrain.arcadeDrive(RobotContainer.getClimbLy()/2, RobotContainer.getClimbLx()/2);
+      if(RobotContainer.getLxAxis() ==0 && RobotContainer.getLyAxis() == 0){
+       DriveTrain.arcadeDrive(RobotContainer.getClimbyDriveyBoi(),0);
     } else{
       DriveTrain.arcadeDrive(RobotContainer.getLyAxis(),RobotContainer.getLxAxis() * 0.7);
     }

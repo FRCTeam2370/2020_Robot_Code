@@ -36,14 +36,19 @@ public class Shooter extends SubsystemBase {
   public static double kD = 0.185;
   public static double speed = 2500;
   //don't touch these (\/) unless you know what you are doing
-  public static double StartingBaseSpeed = 1530;
-  public static double BaseSpeed = 1539;
-  public static double scaling = 1.28;
+  public static double StartingBaseSpeed = 1700;
+  public static double BaseSpeed = 1700;
+  public static double scaling = 1.3;
   private boolean isSet;
 
   public static double getSpeed(){
     double raw = (shooterMotor.getSensorCollection().getIntegratedSensorVelocity() /2048)*600;
     return raw;
+  }
+
+  private double speedPercent(){
+    double percent = getSpeed()/speed;
+    return percent * -100;
   }
   
   public static void configPID(){
@@ -94,12 +99,12 @@ public class Shooter extends SubsystemBase {
     }
   
     SmartDashboard.putString("ManualMode", ManualToggle);
-    SmartDashboard.putNumber("Speed", speed);
+    SmartDashboard.putNumber("TargetSpeed", speed);
     SmartDashboard.putNumber("Original Base Speed", StartingBaseSpeed);
     SmartDashboard.putNumber("Current Base Speed", BaseSpeed);
-    SmartDashboard.putNumber("ActualSpeed", getSpeed());
-    SmartDashboard.putNumber("sensorValue", ShooterSensor.getValue());
-    SmartDashboard.putNumber("POV", RobotContainer.getPOV());
+    SmartDashboard.putNumber("ActualSpeed", speedPercent());
+    //SmartDashboard.putNumber("sensorValue", ShooterSensor.getValue());
+    //SmartDashboard.putNumber("POV", RobotContainer.getPOV());
     // This method will be called once per scheduler run
   }
 }

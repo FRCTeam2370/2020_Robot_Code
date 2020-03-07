@@ -44,7 +44,11 @@ public class SetLEDs extends CommandBase {
     //int getHighestSlot = 0;
 	if(climbing){
       LEDs.setAll(150, 90, 0);
-    } else if(Timer.getMatchTime()<15 && RobotState.isOperatorControl()){
+    } else if (firing){
+      LEDs.setAll(0, 0, 100);
+    } else if (targeting){
+      LEDs.setAll(100, 0, 100);
+    }else if(Timer.getMatchTime()<15 && RobotState.isOperatorControl()){
       if(Flash){
       LEDs.setAll(150, 0, 0);
       } else{
@@ -52,13 +56,10 @@ public class SetLEDs extends CommandBase {
       }
     } else if (Timer.getMatchTime()<30 && RobotState.isOperatorControl()){
       LEDs.setAll(100, 0, 0);
-    } else if (firing){
-      LEDs.setAll(0, 0, 100);
-    } else if (targeting){
-      LEDs.setAll(100, 0, 100);
     } else{
       LEDs.setAll(0, 100, 0);
     }
+  }
 
     //else {*/
       //if(RobotContainer.ClimbA.get())
@@ -68,7 +69,7 @@ public class SetLEDs extends CommandBase {
       //LEDs.SetsegmentFromTop(getHighestSlot, 0, 255, 0);
     //}
     
-  }
+  
 
   // Called once the command ends or is interrupted.
   @Override

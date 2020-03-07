@@ -100,6 +100,10 @@ public class RobotContainer {
   public static JoystickButton ClimbStart = new JoystickButton(climbStick, 8);
   public static JoystickButton ClimbA = new JoystickButton(climbStick, 1);
   public static JoystickButton ClimbB = new JoystickButton(climbStick, 2);
+  public static JoystickButton ClimbX = new JoystickButton(climbStick, 3);
+  public static JoystickButton ClimbY = new JoystickButton(climbStick, 4);
+  public static JoystickButton ClimbRB = new JoystickButton(climbStick, 6);
+  public static JoystickButton ClimbLB = new JoystickButton(climbStick, 5);
   public static int getPOV(){
    return stick.getPOV();
   }
@@ -188,6 +192,20 @@ public class RobotContainer {
       return right-left;
     }
 
+    public static double getClimbyDriveyBoi(){
+      boolean rawRB = ClimbRB.get();
+      boolean rawLB = ClimbLB.get();      
+      double output;
+      if(rawRB){
+        output = -0.4;
+      } else if(rawLB){
+        output = 0.4;
+      } else{
+        output = 0;
+      }
+      return output;
+    }
+
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -213,13 +231,14 @@ public class RobotContainer {
     //m_climber.setDefaultCommand(new ClimberToNextSetpoint(m_climber));
     //m_Shooter.setDefaultCommand(new BaseSpeedAdjust(m_Shooter));
     //m_limelight.setDefaultCommand(new LimelightDistance(m_limelight));
-    B.whileHeld(new MagazineUpShoot(m_magazine));
+    //B.whileHeld(new MagazineUpShoot(m_magazine));
     Y.whileHeld(new TurnToPowerCell(m_limelight));
     A.whileHeld(new Shoot(m_Shooter));
     X.whileHeld(new TurnWithLimelight(m_limelight));
     RB.whileHeld(new ShootAndIntake(m_Shooter,m_magazine,m_indexer,m_intake,m_intakearm, m_limelight));
     LB.toggleWhenPressed(new IntakeArmAuto(m_intake, m_intakearm));
-    ClimbA.whenPressed(new ClimberToNextSetpoint(m_climber));
+    ClimbA.whileHeld(new MagazineDown(m_magazine));
+    ClimbY.whileHeld(new MagazineUpShoot(m_magazine));
     ClimbSelect.whenPressed(new ToggleManualControl());
 
   }

@@ -29,4 +29,3 @@ public class AutoShootLoadPos1 extends SequentialCommandGroup {
     super(new ResetEncoders(d), new AlignAndShoot(s, m, i, l).withTimeout(4),new AutoTurnPID(-130, d), new TurnToPowerCell(l).withTimeout(1),new IntakeAndDrive(in, ia, 200000, d),new ResetEncoders(d), new AutoTurnPID(160,d), new AlignAndShoot(s,m,i,l)); 
   }
 }
-

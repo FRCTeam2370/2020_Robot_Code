@@ -30,10 +30,10 @@ public class DriveTrain extends SubsystemBase {
     left2.configFactoryDefault();
     right1.configFactoryDefault();
     right2.configFactoryDefault();
-    left1.configOpenloopRamp(1);
-    left2.configOpenloopRamp(1);
-    right1.configOpenloopRamp(1);
-    right2.configOpenloopRamp(1);
+    left1.configOpenloopRamp(0.5);
+    left2.configOpenloopRamp(0.5);
+    right1.configOpenloopRamp(0.5);
+    right2.configOpenloopRamp(0.5);
   }
 
   public static WPI_TalonFX left1 = new WPI_TalonFX(Constants.DriveMotorLeftFront);
@@ -80,8 +80,8 @@ public class DriveTrain extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("LYAxis", RobotContainer.getLyAxis());
-    SmartDashboard.putNumber("LXAxis", RobotContainer.getLxAxis());
+    //SmartDashboard.putNumber("LYAxis", RobotContainer.getLyAxis());
+    //SmartDashboard.putNumber("LXAxis", RobotContainer.getLxAxis());
     
     if(Timer.getMatchTime() == 40 || Timer.getMatchTime() == 30 || Timer.getMatchTime() == 10 || Timer.getMatchTime() == 5){
       RobotContainer.stick.setRumble(RumbleType.kLeftRumble, 1);

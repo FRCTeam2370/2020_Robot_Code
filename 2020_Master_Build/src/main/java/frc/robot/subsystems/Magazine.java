@@ -41,7 +41,7 @@ public class Magazine extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Magazine Top Ball",MagazineTopSensor.getValue());
+    //SmartDashboard.putNumber("Magazine Top Ball",MagazineTopSensor.getValue());
     // This method will be called once per scheduler run
   }
 }

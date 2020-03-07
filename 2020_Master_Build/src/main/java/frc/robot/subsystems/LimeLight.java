@@ -107,7 +107,7 @@ public class LimeLight extends SubsystemBase {
     SmartDashboard.putNumber("Limelight X", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0.0));
     SmartDashboard.putNumber("Limelight Y", getLimelightYOffset());
     SmartDashboard.putNumber("Limelight Ball X", getBallXOffset());
-    SmartDashboard.putBoolean("Operator Align", operatorAlign);
+    //SmartDashboard.putBoolean("Operator Align", operatorAlign);
     //SmartDashboard.putNumber("Limelight A", getLimelightTargetArea());
   }
 
@@ -117,7 +117,7 @@ public class LimeLight extends SubsystemBase {
     startingAngle = getLimelightYOffset() + limelightAngle;
     totalTangent = Math.tan(Math.toRadians(startingAngle));
     
-    if(RobotState.isAutonomous() && !RobotState.isDisabled() || RobotContainer.RB.get() || RobotContainer.X.get()){
+    if(RobotState.isAutonomous() && !RobotState.isDisabled() || RobotContainer.RB.get() || RobotContainer.X.get() || RobotContainer.A.get()){
       operatorAlign = true;
       
     } else{

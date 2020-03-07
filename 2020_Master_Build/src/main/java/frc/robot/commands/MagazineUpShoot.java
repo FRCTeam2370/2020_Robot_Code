@@ -10,6 +10,7 @@ package frc.robot.commands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Magazine;
 
 public class MagazineUpShoot extends CommandBase {
@@ -29,6 +30,7 @@ public class MagazineUpShoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Indexer.IndexerMotor.set(ControlMode.PercentOutput, Indexer.indexerSpeed);
     Magazine.magazineMotor.set(ControlMode.PercentOutput, Magazine.magazineSpeed);
   }
 
@@ -36,6 +38,7 @@ public class MagazineUpShoot extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     Magazine.magazineMotor.set(ControlMode.PercentOutput, 0);
+    Indexer.IndexerMotor.set(ControlMode.PercentOutput, 0);
   }
 
   // Returns true when the command should end.

@@ -36,7 +36,7 @@ public class MoveIntakeArm extends CommandBase {
     Intake.intakeMotor.set(ControlMode.PercentOutput, -RobotContainer.getLeftTrigger());
     IntakeArm.IntakeArmMotor.configForwardSoftLimitEnable(false);
     IntakeArm.IntakeArmMotor.configReverseSoftLimitEnable(false);
-    IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, RobotContainer.getRyAxis());
+    IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, RobotContainer.getClimbLy());
     }
   }
 

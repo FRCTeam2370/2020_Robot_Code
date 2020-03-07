@@ -22,11 +22,11 @@ public class ToggleManualControl extends CommandBase {
   @Override
   public void initialize() {
     if(Shooter.ManualToggle == "none"){
-      Shooter.ManualToggle = "LimeLight";
-    } else if(Shooter.ManualToggle == "LimeLight"){
       Shooter.ManualToggle = "intake";
-    } else if(Shooter.ManualToggle == "intake"){
+    } else if(Shooter.ManualToggle == "LimeLight"){
       Shooter.ManualToggle = "none";
+    } else if(Shooter.ManualToggle == "intake"){
+      Shooter.ManualToggle = "LimeLight";
     }
   }
 

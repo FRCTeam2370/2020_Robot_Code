@@ -25,13 +25,13 @@ public class TurnToPowerCell extends PIDCommand {
   public TurnToPowerCell(LimeLight l) {
     super(  
         // The controller that the command will use
-        new PIDController(0.03, 0.04, 0),
+        new PIDController(0.07, 0.04, 0),
         // This should return the measurement
         () -> LimeLight.getBallXOffset(),
         // This should return the setpoint (can also be a constant)
         () -> 0,
         // This uses the output
-        output -> {DriveTrain.arcadeDrive(RobotContainer.getLyAxis(), MathUtil.clamp(output, -.40, .40));
+        output -> {DriveTrain.arcadeDrive(RobotContainer.getLyAxis(), MathUtil.clamp(output, -.4, .4));
           // Use the output here
         });
         getController().setTolerance(.25);

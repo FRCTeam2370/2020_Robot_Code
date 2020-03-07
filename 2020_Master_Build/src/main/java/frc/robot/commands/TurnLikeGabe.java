@@ -7,44 +7,60 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Magazine;
+import frc.robot.subsystems.Shooter;
 
-public class ResetEncoders extends CommandBase {
+public class TurnLikeGabe extends CommandBase {
   /**
-   * Creates a new ResetEncoders.
+   * Creates a new TurnLikeGabe.
    */
-  public ResetEncoders(DriveTrain drive) {
-    addRequirements(drive);
+  private double target;
+  public TurnLikeGabe(double setpoint, DriveTrain d) {
+    addRequirements(d);
+    target = setpoint;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    DriveTrain.ahrs.reset(); 
-    DriveTrain.left1.getSensorCollection().setIntegratedSensorPosition(0, 30);
-    DriveTrain.left1.setNeutralMode(NeutralMode.Brake);
-    DriveTrain.right1.setNeutralMode(NeutralMode.Brake);
-    DriveTrain.left2.setNeutralMode(NeutralMode.Brake);
-    DriveTrain.right2.setNeutralMode(NeutralMode.Brake);
-   }
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(!Magazine.IsBallOnTop()){
+      Magazine.magazineMotor.set(ControlMode.PercentOutput, Magazine.magazineSpeed);
+    }
+    Indexer.IndexerMotor.set(ControlMode.PercentOutput, Indexer.indexerSpeed);
+    Shooter.shooterMotor.set(ControlMode.Velocity, -2500 * 2048 / 600);
+    if(target > 0){
+      DriveTrain.arcadeDrive(0, -.55);
+    } else{
+      DriveTrain.arcadeDrive(0, .55);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //Magazine.magazineMotor.set(ControlMode.PercentOutput, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    boolean atTarget;
+    if(target > 0){
+      atTarget = target < DriveTrain.getYaw();
+    } else{
+      atTarget = target > DriveTrain.getYaw();
+    }
+    return atTarget;
   }
 }

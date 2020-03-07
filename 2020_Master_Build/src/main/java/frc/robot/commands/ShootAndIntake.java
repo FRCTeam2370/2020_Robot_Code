@@ -25,6 +25,6 @@ public class ShootAndIntake extends ParallelCommandGroup {
   public ShootAndIntake(Shooter s, Magazine m, Indexer i, Intake in, IntakeArm ia, LimeLight l) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new AlignAndShoot(s, m, i, l),new IntakeArmAuto(in, ia));
+    super(new AlignAndShoot(s, m, i, l, in, ia));
   }
 }

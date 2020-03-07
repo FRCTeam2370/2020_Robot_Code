@@ -80,6 +80,7 @@ public class DriveTrain extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("EncoderPosition", getPosition());
     //SmartDashboard.putNumber("LYAxis", RobotContainer.getLyAxis());
     //SmartDashboard.putNumber("LXAxis", RobotContainer.getLxAxis());
     
@@ -100,14 +101,14 @@ public class DriveTrain extends SubsystemBase {
       left2.setNeutralMode(NeutralMode.Brake);
       right1.setNeutralMode(NeutralMode.Brake);
       right2.setNeutralMode(NeutralMode.Brake);
-      left1.configPeakOutputForward(.25);
-      left1.configPeakOutputReverse(-.25);
-      left2.configPeakOutputForward(.25);
-      left2.configPeakOutputReverse(-.25);
-      right1.configPeakOutputForward(.25);
-      right1.configPeakOutputReverse(-.25);
-      right2.configPeakOutputForward(.25);
-      right2.configPeakOutputReverse(-.25);
+      left1.configPeakOutputForward(.6);
+      left1.configPeakOutputReverse(-.6);
+      left2.configPeakOutputForward(.6);
+      left2.configPeakOutputReverse(-.6);
+      right1.configPeakOutputForward(.6);
+      right1.configPeakOutputReverse(-.6);
+      right2.configPeakOutputForward(.6);
+      right2.configPeakOutputReverse(-.6);
     } else{
       left1.configPeakOutputForward(1);
       left1.configPeakOutputReverse(-1);

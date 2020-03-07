@@ -25,7 +25,7 @@ public class IntakeArm extends SubsystemBase {
     IntakeArmMotor.setInverted(false);
     IntakeArmMotor.configForwardSoftLimitThreshold(3000);
     IntakeArmMotor.configForwardSoftLimitEnable(true);
-    IntakeArmMotor.configReverseSoftLimitThreshold(2000);
+    IntakeArmMotor.configReverseSoftLimitThreshold(100);
     IntakeArmMotor.configReverseSoftLimitEnable(true);
     IntakeArmMotor.setSensorPhase(true);
     IntakeArmMotor.setNeutralMode(NeutralMode.Coast);

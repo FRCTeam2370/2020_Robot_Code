@@ -34,7 +34,7 @@ public class IntakeArmAuto extends CommandBase {
   public void execute() {
     Intake.intakeMotor.set(ControlMode.PercentOutput, Intake.intakeSpeed);
     Indexer.IndexerMotor.set(ControlMode.PercentOutput, Indexer.indexerSpeed);
-    if(!(Shooter.ManualToggle == "LimeLight")){
+    if(!(Shooter.ManualToggle == "intake")){
     IntakeArm.IntakeArmMotor.configForwardSoftLimitEnable(true);
     IntakeArm.IntakeArmMotor.configReverseSoftLimitEnable(true);
     IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, IntakeArm.speed);
@@ -47,7 +47,7 @@ public class IntakeArmAuto extends CommandBase {
   public void end(boolean interrupted) {
     Intake.intakeMotor.stopMotor();
     Indexer.IndexerMotor.stopMotor();
-    if(!(Shooter.ManualToggle == "LimeLight")){
+    if(!(Shooter.ManualToggle == "intake")){
     IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, -IntakeArm.speed);
     }
     //Indexer.IndexerMotor.set(ControlMode.PercentOutput, 0);

@@ -69,8 +69,8 @@ public class RobotContainer {
   private final Climber m_climber = new Climber();
   private final LEDs m_leds = new LEDs();
   private AutoDrivePID autodrive = new AutoDrivePID(100000, m_DriveTrain);
-  private AutoShootReverse ShootReverse = new AutoShootReverse(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain);
-  private AlignAndShoot ShootItALL = new AlignAndShoot(m_Shooter,m_magazine, m_indexer,m_limelight);
+  private AutoShootReverse ShootReverse = new AutoShootReverse(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain, m_intake, m_intakearm);
+  private AlignAndShoot ShootItALL = new AlignAndShoot(m_Shooter,m_magazine, m_indexer,m_limelight, m_intake, m_intakearm);
   private AutoShootLoadPos1 Position1 = new AutoShootLoadPos1(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain, m_intake, m_intakearm);
   private AutoShootLoadPos3 Position3 = new AutoShootLoadPos3(m_Shooter, m_magazine, m_indexer,m_limelight, m_DriveTrain, m_intake, m_intakearm);
 

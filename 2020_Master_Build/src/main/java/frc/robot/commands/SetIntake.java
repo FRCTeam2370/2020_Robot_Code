@@ -7,34 +7,32 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeArm;
 
-public class ResetEncoders extends CommandBase {
+public class SetIntake extends CommandBase {
   /**
-   * Creates a new ResetEncoders.
+   * Creates a new SetIntake.
    */
-  public ResetEncoders(DriveTrain drive) {
-    addRequirements(drive);
+  public SetIntake(Intake in, IntakeArm ia) {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    DriveTrain.ahrs.reset(); 
-    DriveTrain.left1.getSensorCollection().setIntegratedSensorPosition(0, 30);
-    DriveTrain.left1.setNeutralMode(NeutralMode.Brake);
-    DriveTrain.right1.setNeutralMode(NeutralMode.Brake);
-    DriveTrain.left2.setNeutralMode(NeutralMode.Brake);
-    DriveTrain.right2.setNeutralMode(NeutralMode.Brake);
-   }
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Intake.intakeMotor.set(ControlMode.PercentOutput, Intake.intakeSpeed);
+    Indexer.IndexerMotor.set(ControlMode.PercentOutput, Indexer.indexerSpeed);
+    IntakeArm.IntakeArmMotor.set(ControlMode.PercentOutput, IntakeArm.speed);
   }
 
   // Called once the command ends or is interrupted.
@@ -45,6 +43,6 @@ public class ResetEncoders extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

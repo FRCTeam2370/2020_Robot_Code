@@ -9,6 +9,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeArm;
 import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 
@@ -19,9 +21,9 @@ public class ShootFull extends ParallelCommandGroup {
   /**
    * Creates a new ShootFull.
    */
-  public ShootFull(Shooter s, Magazine m, Indexer i) {
+  public ShootFull(Shooter s, Magazine m, Indexer i, Intake in, IntakeArm ia) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());super();
-    super(new Shoot(s),/* new IndexerIn(i),*/ new MagazineUpShoot(m));
+    super(new Shoot(s), new IndexerIn(i), new MagazineUpShoot(m), new IntakeArmAuto(in, ia));
   }
 }

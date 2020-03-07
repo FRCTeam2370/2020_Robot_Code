@@ -10,6 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeArm;
 import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
@@ -21,9 +23,9 @@ public class AutoShootReverse extends SequentialCommandGroup {
   /**
    * Creates a new AutoReverse.
    */
-  public AutoShootReverse(Shooter s, Magazine m, Indexer i, LimeLight l, DriveTrain d) {
+  public AutoShootReverse(Shooter s, Magazine m, Indexer i, LimeLight l, DriveTrain d, Intake in, IntakeArm ia) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());super();
-    super(new AlignAndShoot(s, m, i, l).withTimeout(6) ,new AutoDrivePID(-90000, d).withTimeout(2));
+    super(new AlignAndShoot(s, m, i, l, in, ia).withTimeout(6) ,new AutoDrivePID(-90000, d).withTimeout(2));
   }
 }

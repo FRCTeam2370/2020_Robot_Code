@@ -9,6 +9,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeArm;
 import frc.robot.subsystems.Magazine;
 import frc.robot.subsystems.Shooter;
 
@@ -19,9 +21,9 @@ public class AllShoot extends SequentialCommandGroup {
   /**
    * Creates a new AllShoot.
    */
-  public AllShoot(Shooter s, Magazine m, Indexer i) {
+  public AllShoot(Shooter s, Magazine m, Indexer i, Intake in, IntakeArm ia) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new StartShooter(s), new ShootFull(s, m, i));
+    super(new StartShooter(s), new ShootFull(s, m, i, in, ia));
   }
 }

@@ -76,8 +76,8 @@ public class RobotContainer {
 
   public static SendableChooser<Command> autoChooser = new SendableChooser<>();
     public void addAutoOptions(){
-    autoChooser.setDefaultOption("Go Straight", autodrive);
-    autoChooser.addOption("Turn, Shoot, and Reverse", ShootReverse);
+    autoChooser.setDefaultOption("Turn, Shoot, and Reverse", ShootReverse);
+    autoChooser.addOption("Go Straight", autodrive);
     autoChooser.addOption("Turn and Shoot", ShootItALL);
     autoChooser.addOption("Turn, Shoot, and Load (Position 1)", Position1);
     autoChooser.addOption("Turn, Shoot, and Load (Position 3)", Position3);

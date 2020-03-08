@@ -36,9 +36,9 @@ public class Shooter extends SubsystemBase {
   public static double kD = 0.185;
   public static double speed = 2500;
   //don't touch these (\/) unless you know what you are doing
-  public static double StartingBaseSpeed = 1730;
-  public static double BaseSpeed = 1730;
-  public static double scaling = 1.3;
+  public static double StartingBaseSpeed = 1670;
+  public static double BaseSpeed = 1670;
+  public static double scaling = 1.22;
   private boolean isSet;
 
   public static double getSpeed(){

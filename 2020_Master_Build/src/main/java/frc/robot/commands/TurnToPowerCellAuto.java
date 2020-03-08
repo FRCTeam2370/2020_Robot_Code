@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import edu.wpi.first.wpiutil.math.MathUtil;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.LimeLight;
 import frc.robot.subsystems.Shooter;
@@ -17,23 +18,22 @@ import frc.robot.subsystems.Shooter;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class TurnWithLimelight extends PIDCommand {
+public class TurnToPowerCellAuto extends PIDCommand {
   /**
    * Creates a new TurnWithLimelight.
    */
-  public TurnWithLimelight(LimeLight l) {
+  public TurnToPowerCellAuto(LimeLight l) {
     super(  
         // The controller that the command will use
-        new PIDController(0.1, 0.04, 0),
+        new PIDController(0.06, 0.02, 0),
         // This should return the measurement
-        () -> LimeLight.getLimelightXOffset(),
+        () -> LimeLight.getBallXOffset(),
         // This should return the setpoint (can also be a constant)
-        () -> 1,
+        () -> 0,
         // This uses the output
-        output -> {DriveTrain.arcadeDrive(0, MathUtil.clamp(output, -.40, .40));
+        output -> {DriveTrain.arcadeDrive(-.55, MathUtil.clamp(output, -.4, .4));
           // Use the output here
         });
-        LimeLight.operatorAlign = true;
         getController().setTolerance(.25);
         addRequirements(l);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -41,7 +41,6 @@ public class TurnWithLimelight extends PIDCommand {
   }
 
   public void initialize() {
-    LimeLight.operatorAlign = true;
   }
 
   @Override
@@ -52,6 +51,6 @@ public class TurnWithLimelight extends PIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return LimeLight.operatorAlign = false || Shooter.ManualToggle == "LimeLight";
+    return false;
   }
 }

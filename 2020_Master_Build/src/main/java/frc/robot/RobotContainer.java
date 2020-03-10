@@ -20,15 +20,13 @@ import frc.robot.commands.AutoShootLoadPos1;
 import frc.robot.commands.AutoShootLoadPos3;
 import frc.robot.commands.AutoShootReverse;
 import frc.robot.commands.Climb;
-import frc.robot.commands.ClimberToNextSetpoint;
 import frc.robot.commands.DriveWithJoystick;
-import frc.robot.commands.IndexerIn;
-import frc.robot.commands.IndexerOut;
 import frc.robot.commands.IntakeArmAuto;
 import frc.robot.commands.MagazineDown;
 import frc.robot.commands.MagazineUp;
 import frc.robot.commands.MagazineUpShoot;
 import frc.robot.commands.MoveIntakeArm;
+import frc.robot.commands.PreShotRev;
 import frc.robot.commands.ResetEncoders;
 import frc.robot.commands.SetLEDs;
 import frc.robot.commands.Shoot;
@@ -197,9 +195,9 @@ public class RobotContainer {
       boolean rawLB = ClimbLB.get();      
       double output;
       if(rawRB){
-        output = -0.4;
+        output = -0.45;
       } else if(rawLB){
-        output = 0.4;
+        output = 0.45;
       } else{
         output = 0;
       }
@@ -233,11 +231,13 @@ public class RobotContainer {
     //m_limelight.setDefaultCommand(new LimelightDistance(m_limelight));
     //B.whileHeld(new MagazineUpShoot(m_magazine));
     Y.whileHeld(new TurnToPowerCell(m_limelight));
-    A.whileHeld(new Shoot(m_Shooter));
+    A.toggleWhenPressed(new PreShotRev(m_Shooter, m_magazine));
     X.whileHeld(new TurnWithLimelight(m_limelight));
     RB.whileHeld(new ShootAndIntake(m_Shooter,m_magazine,m_indexer,m_intake,m_intakearm, m_limelight));
     LB.toggleWhenPressed(new IntakeArmAuto(m_intake, m_intakearm));
     ClimbA.whileHeld(new MagazineDown(m_magazine));
+    //ClimbB.whenPressed(new ClimberHang());
+    ClimbX.whileHeld(new Shoot(m_Shooter));
     ClimbY.whileHeld(new MagazineUpShoot(m_magazine));
     ClimbSelect.whenPressed(new ToggleManualControl());
 

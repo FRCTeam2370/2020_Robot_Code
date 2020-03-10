@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -39,8 +40,8 @@ public static double getDifference(){
 }
 
 public static void ResetEncoders(){
-  ClimbMotorLeft.getSensorCollection().setQuadraturePosition(0, timeout);
-  ClimbMotorRight.getSensorCollection().setQuadraturePosition(0, timeout);
+  ClimbMotorLeft.getSensorCollection().setQuadraturePosition(0, 0);
+  ClimbMotorRight.getSensorCollection().setQuadraturePosition(0, 0);
 }
 
 public static double ReadEncoders(){
@@ -50,7 +51,7 @@ public static double ReadEncoders(){
 }
 
 public static void configPID(){
-  //Configure Motor 1
+ /* //Configure Motor 1
   ClimbMotorLeft.configFactoryDefault();
   ClimbMotorLeft.setSensorPhase(true);
   ClimbMotorLeft.configNominalOutputForward(0, timeout);
@@ -72,7 +73,7 @@ public static void configPID(){
   ClimbMotorRight.config_kF(slotIdx, kF, timeout);
   ClimbMotorRight.config_kP(slotIdx, kP, timeout);
   ClimbMotorRight.config_kI(slotIdx, kI, timeout);
-  ClimbMotorRight.config_kD(slotIdx, kD, timeout);
+  ClimbMotorRight.config_kD(slotIdx, kD, timeout);*/
 }
 
 public static void setMotorsWithPID(double setpoint){
@@ -104,11 +105,12 @@ public static void gyroAdjust(){
     ClimbMotorRight.configFactoryDefault();
     ClimbMotorLeft.setNeutralMode(NeutralMode.Brake);
     ClimbMotorRight.setNeutralMode(NeutralMode.Brake);
-    ResetEncoders();
   }
 
   @Override
   public void periodic() {
+    ResetEncoders();
+    SmartDashboard.putNumber("Climber Encoder", ReadEncoders());
     // This method will be called once per scheduler run
   }
 }

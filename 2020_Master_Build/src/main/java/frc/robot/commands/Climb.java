@@ -30,6 +30,8 @@ public class Climb extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Climber.ClimbMotorLeft.getSensorCollection().setQuadraturePosition(0, 0);
+    Climber.ClimbMotorRight.getSensorCollection().setQuadraturePosition(0, 0);
     Climber.ClimbMotorRight.setInverted(true);
     Climber.ClimbMotorLeft.setInverted(false);
     Climber.ClimbMotorLeft.setNeutralMode(NeutralMode.Brake);

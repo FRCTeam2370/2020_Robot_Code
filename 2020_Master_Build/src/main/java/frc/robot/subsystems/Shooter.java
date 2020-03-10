@@ -26,7 +26,7 @@ public class Shooter extends SubsystemBase {
   private static LimeLight m_limelight = new LimeLight();
   public static WPI_TalonFX shooterMotor = new WPI_TalonFX(Constants.shooterMotor1);
   //public static WPI_TalonFX shooterMotor2 = new WPI_TalonFX(Constants.shooterMotor2);
-  public static AnalogInput ShooterSensor = new AnalogInput(3);
+  //public static AnalogInput ShooterSensor = new AnalogInput(3);
   public static String ManualToggle = "none";
   private static int timeout = 30;
   private static int slotIdx = 0;
@@ -38,7 +38,7 @@ public class Shooter extends SubsystemBase {
   //don't touch these (\/) unless you know what you are doing
   public static double StartingBaseSpeed = 1670;
   public static double BaseSpeed = 1670;
-  public static double scaling = 1.22;
+  public static double scaling = 1.23;
   private boolean isSet;
 
   public static double getSpeed(){

@@ -117,7 +117,7 @@ public class LimeLight extends SubsystemBase {
     startingAngle = getLimelightYOffset() + limelightAngle;
     totalTangent = Math.tan(Math.toRadians(startingAngle));
     
-    if(RobotState.isAutonomous() && !RobotState.isDisabled() || RobotContainer.RB.get() || RobotContainer.X.get() || RobotContainer.A.get()){
+    if(RobotState.isAutonomous() && !RobotState.isDisabled() || RobotContainer.RB.get() || RobotContainer.X.get() || RobotContainer.ClimbX.get()){
       operatorAlign = true;
       
     } else{

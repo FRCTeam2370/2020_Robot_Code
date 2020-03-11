@@ -45,7 +45,7 @@ public class IntakeArm extends SubsystemBase {
     IntakeArm.IntakeArmMotor.getSensorCollection().setQuadraturePosition(0, 10);
   }
   SmartDashboard.putBoolean("limit switch",!LimitSwitch.get());
-  //SmartDashboard.putNumber("ArmPosition",IntakeArmMotor.getSensorCollection().getQuadraturePosition());
+  SmartDashboard.putNumber("ArmPosition",IntakeArmMotor.getSensorCollection().getQuadraturePosition());
   //SmartDashboard.putNumber("Arm Current", IntakeArmMotor.getSupplyCurrent());
   //SmartDashboard.putNumber("Pan Sensor",Indexer.PanSensor.getValue());
   // This method will be called once per scheduler run
